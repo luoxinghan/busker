@@ -3,6 +3,8 @@ import logoPic from '../../statics/logo.png';
 
 export const HeaderWrapper = styled.div`
     position: relative;
+    width: 100%;
+    margin: 0 auto;
     height: 58px;
     border-bottom: 1px solid #f1f1f1;
 `;
@@ -11,13 +13,13 @@ export const NavLogo = styled.a.attrs({
    href: '/'
 })`
     height: 58px;
-    width: 100px;
+    width: 110px;
     position: absolute;
     top: 0;
-    left: 20px;
+    left: 15px;
     display: block;
     background: url(${logoPic});
-    background-size: contain;
+    background-size: 100% 105%;
 `;
 
 export const Nav = styled.div`
@@ -55,13 +57,16 @@ export const Button = styled.button`
     border-radius: 19px;
     font-size: 14px;
     background: none;
+    color: #333;
 `;
 
-export const Avator = styled.img`
+export const Avatar = styled.img`
     float: right;
-    margin-right: 20px;
+    margin-right: 40px;
     margin-top: 8px;
     padding: 20px 20px;
-    border: 1px solid #333;
+    border: 1px solid #999999;
     border-radius: 10px;
+    background: url("${props => props.imgUrl}");
+    background-size:cover;
 `;

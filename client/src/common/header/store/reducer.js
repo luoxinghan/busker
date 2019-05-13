@@ -6,10 +6,12 @@ const defaultState = fromJS({
 });
 
 export default (state = defaultState, action) => {
-    if (action.type === actionTypes.LOG_IN_ACTION) {
-        return state.set("logged", true);
-    } else if (action.type === actionTypes.LOG_OUT_ACTION) {
-        return state.set("logged", false);
+    switch (action.type) {
+        case actionTypes.LOG_IN_ACTION:
+            return state.set("logged", true);
+        case actionTypes.LOG_OUT_ACTION:
+            return state.set("logged", false);
+        default:
+            return state;
     }
-    return state;
 }

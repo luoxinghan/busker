@@ -1,9 +1,11 @@
 import React from 'react';
-import {connect} from "react-redux";
-import {actionCreators} from "./store";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import { Menu, Dropdown } from 'antd';
+import { actionCreators as loginActionCreators } from "../../pages/login/store";
 import {
     Addition,
-    Avator,
+    Avatar,
     Button,
     HeaderWrapper,
     Nav,
@@ -11,35 +13,34 @@ import {
     NavLogo
 } from './style';
 
-const getLogArea = (logged, handleLogOut, handleLogIn) =>{
-    if (logged) {
-        return (
-            <Avator
-                onClick={handleLogOut}
-            />
-        );
-    }  else {
-        return (
-            <Button
-                onClick={handleLogIn}
-            >Log In</Button>
-        );
-    }
-};
-
 function Header(props) {
-    const {logged, handleLogOut, handleLogIn} = props;
+    const {isLogged,logout} = props;
     return (
         <HeaderWrapper>
             <NavLogo/>
             <Nav>
-                <NavItem className='active'>Home</NavItem>
-                <NavItem>Busker</NavItem>
-                <NavItem>Trendency</NavItem>
-                <NavItem>Performance</NavItem>
+                <Link to="/"><NavItem className='active'>Home</NavItem></Link>
+                <Link to="/busker"><NavItem>Busker</NavItem></Link>
+                <Link to="/moment"><NavItem>Moment</NavItem></Link>
+                <Link to="/performance"><NavItem>Performance</NavItem></Link>
             </Nav>
             <Addition>
-                {getLogArea(logged, handleLogOut, handleLogIn)}
+                {
+                    isLogged ?
+                        <Dropdown overlay={
+                            <Menu>
+                                <Menu.Item>
+                                    <Link to="/">Profile</Link>
+                                </Menu.Item>
+                                <Menu.Item>
+                                    <span onClick={logout}>Exit</span>
+                                </Menu.Item>
+                            </Menu>
+                        } placement="bottomCenter">
+                            <Avatar imgUrl="https://avatars1.githubusercontent.com/u/30335361?s=460&v=4"/>
+                        </Dropdown> :
+                        <Link to="/login"><Button>log in</Button></Link>
+                }
             </Addition>
         </HeaderWrapper>
     )
@@ -47,18 +48,15 @@ function Header(props) {
 
 const mapStateToProps = (state) => {
     return {
-        logged: state.get("header").get("logged")
+        isLogged: state.get("login").get("isLogged")
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        handleLogIn(){
-            dispatch(actionCreators.getLogInAction());
-        },
-        handleLogOut(){
-            dispatch(actionCreators.getLogOutAction());
-        },
+        logout(){
+            dispatch(loginActionCreators.changeLogout());
+        }
     }
 };
 

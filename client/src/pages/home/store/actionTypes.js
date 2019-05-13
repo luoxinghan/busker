@@ -1,0 +1,1 @@
+export const GET_HOME_IMG = "home/get_home_img";
