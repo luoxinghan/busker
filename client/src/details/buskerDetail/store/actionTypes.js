@@ -1,0 +1,1 @@
+export const CHANGE_BUSKER_DETAIL = "change_busker_detail";

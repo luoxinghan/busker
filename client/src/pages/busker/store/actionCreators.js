@@ -9,7 +9,7 @@ const getBuskerList = (result,buskerPage) => ({
 
 export const getBuskerInfo = (buskerPage) => {
     return (dispatch) => {
-        axios.get("/api/buskerList.json?page="+buskerPage).then((res)=>{
+        axios.get("/api/busker/buskerList?page="+buskerPage).then((res)=>{
             dispatch(getBuskerList(res.data.data, buskerPage));
         }).catch((e)=>{
             console.log(e);

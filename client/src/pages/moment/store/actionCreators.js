@@ -14,17 +14,17 @@ const getMomentMore = (result, nextPage) => ({
 
 export const getMomentData = () => {
   return (dispatch) => {
-      axios.get("/api/moment/momentList.json").then((res)=>{
+      axios.get("/api/moment/momentList").then((res)=>{
           dispatch(getMomentList(res.data.data));
       }).catch(()=>{
-          console.log("/api/moment/momentList.json not found!");
+          console.log("/api/moment/momentList not found!");
       })
   }
 };
 
 export const getListMore = (page) => {
     return (dispatch) => {
-        axios.get("/api/moment/momentList.json?page=" + page).then((res)=>{
+        axios.get("/api/moment/momentList?page=" + page).then((res)=>{
             dispatch(getMomentMore(res.data.data, page + 1))
         }).catch((e)=>{
             console.log(e);

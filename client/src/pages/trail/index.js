@@ -4,71 +4,71 @@ import { Typography, Empty } from 'antd';
 import { actionCreators } from "./store";
 import "antd/dist/antd.css";
 import {
-    PerformanceWrapper,
-    PerformanceList,
-    PerformanceItem,
-    PerformanceInfo,
-    PerformanceListMore
+    TrailWrapper,
+    TrailList,
+    TrailItem,
+    TrailInfo,
+    TrailListMore
 } from "./style";
 
 const { Paragraph } = Typography;
 
-class Performance extends Component{
+class Trail extends Component{
     render() {
-        const { performanceList, performancePage, getListMore } = this.props;
+        const { trailList, trailPage, getListMore } = this.props;
         return (
-            <PerformanceWrapper>
-                <PerformanceList>
-                    { performanceList.size === 0 ?
-                        <PerformanceItem>
+            <TrailWrapper>
+                <TrailList>
+                    { trailList.size === 0 ?
+                        <TrailItem>
                             <Empty/>
-                        </PerformanceItem> : performanceList.map((item, index)=>{
+                        </TrailItem> : trailList.map((item, index)=>{
                             return (
-                            <PerformanceItem key={index}>
+                            <TrailItem key={index}>
                                 <img
                                     className="poster-pic"
                                     alt="haibao"
                                     src={item.get("imgUrl")}
                                 />
-                                <PerformanceInfo>
+                                <TrailInfo>
                                     <p className="time">{item.get("time")}</p>
                                     <h3 className="busker-name">{item.get("name")}</h3>
                                     <p className="address">{item.get("address")}</p>
                                     <Paragraph ellipsis={{ rows: 4, expandable: false }} className="des">
                                         {item.get("describe")}
                                     </Paragraph>
-                                </PerformanceInfo>
-                            </PerformanceItem>
+                                </TrailInfo>
+                            </TrailItem>
                             )
                         })}
-                </PerformanceList>
-                <PerformanceListMore  onClick={()=> getListMore(performancePage)}>
+                </TrailList>
+                <TrailListMore  onClick={()=> getListMore(trailPage)}>
                     ······
-                </PerformanceListMore>
-            </PerformanceWrapper>
+                </TrailListMore>
+            </TrailWrapper>
         );
     }
     componentDidMount() {
-        this.props.getPerformanceData();
+        this.props.getTrailData();
     }
 }
 
 const mapStateToProps = (state) => {
     return {
-        performanceList: state.get("performance").get("performanceList"),
-        performancePage: state.get("performance").get("performancePage")
+        trailList: state.get("trail").get("trailList"),
+        trailPage: state.get("trail").get("trailPage")
     }
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getPerformanceData(){
-            dispatch(actionCreators.getPerformanceInfo());
+        getTrailData(){
+            dispatch(actionCreators.getTrailInfo());
         },
-        getListMore(performancePage){
-            dispatch(actionCreators.getPerformanceMore(performancePage))
+        getListMore(trailPage){
+            dispatch(actionCreators.getTrailMore(trailPage))
         }
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Performance);
+export default connect(mapStateToProps, mapDispatchToProps)(Trail);

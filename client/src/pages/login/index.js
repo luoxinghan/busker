@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
-import {Redirect} from "react-router-dom";
+import {Link, Redirect} from "react-router-dom";
 import {
     Form, Icon, Input, Button, Checkbox,
 } from 'antd';
@@ -55,7 +55,7 @@ class Login extends Component{
                                 <Button type="primary" htmlType="submit" className="login-form-button">
                                     Log in
                                 </Button><br/>
-                                Or <a href="/">register now!</a>
+                                Or <Link to="/register">register now!</Link>
                             </Form.Item>
                         </Form>
                     </FormWrapper>

@@ -1,15 +1,15 @@
 import styled from "styled-components";
 
-export const PerformanceWrapper = styled.div`
+export const TrailWrapper = styled.div`
   
 `;
 
-export const PerformanceList = styled.div`
+export const TrailList = styled.div`
   width: 1024px;
   margin: 0 auto;
 `;
 
-export const PerformanceItem = styled.div`
+export const TrailItem = styled.div`
   width: 960px;
   height: 300px;
   margin: 60px auto 20px auto;
@@ -27,7 +27,7 @@ export const PerformanceItem = styled.div`
   }
 `;
 
-export const PerformanceInfo = styled.div`
+export const TrailInfo = styled.div`
   width: 660px;
   padding: 20px;
   font-size: 18px;
@@ -46,7 +46,7 @@ export const PerformanceInfo = styled.div`
   }
 `;
 
-export const PerformanceListMore = styled.div`
+export const TrailListMore = styled.div`
   width: 100px;
   margin: 20px auto;
   cursor: pointer;

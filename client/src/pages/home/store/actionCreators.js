@@ -9,11 +9,11 @@ const getHomeImgAction = (result) => ({
 
 export const getHomeData = () => {
     return (dispatch) => {
-        axios.get("/api/homeImgList.json")
+        axios.get("/api/homepage")
             .then((res)=>{
                 dispatch(getHomeImgAction(res.data.data));
             }).catch(()=>{
-            console.log("/api/homeImgList.json 404");
+            console.log("/api/homepage 404");
         })
     }
 };

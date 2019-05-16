@@ -23,7 +23,7 @@ class Moment extends Component{
                         if (item.get("videos").size === 0 && item.get("images").size === 0){
                             bgUrl = "";
                         } else if (item.get("videos").size === 0) {
-                            bgUrl = item.get("images").get(0).get("imgUrl");
+                            bgUrl = item.get("images").get(0).get("imageUrl");
                         } else {
                             bgUrl = "https://img.youtube.com/vi/"+ item.get("videos").get(0).get("videoUrl") +"/mqdefault.jpg";
                             title = "MOMENT + VIDEO";
@@ -37,7 +37,7 @@ class Moment extends Component{
                                         </ItemHeader>
                                         <p className="busker-name">{item.get("buskerName")}</p>
                                         <div className="date">{title}</div>
-                                        <p>{item.get("content")}</p>
+                                        <p>{item.get("describe")}</p>
                                     </Link>
                                 </ItemInfo>
                             </MomentItem>
