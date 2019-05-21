@@ -1,0 +1,107 @@
+{
+  "success": true,
+  "data": {
+    "totalNum": 30,
+    "buskerList": [{
+      "id": 1,
+      "imgUrl": "https://avatars1.githubusercontent.com/u/30335361?s=460&v=4",
+      "buskerName": "Busker",
+      "age": 23,
+      "sex": 1,
+      "instrument": "Guitar, Piano",
+      "introduce": "introduce",
+      "recentPerform": "2019-04-23",
+      "tendencyAllHot": 10445
+    },{
+      "id": 2,
+      "imgUrl": "https://avatars1.githubusercontent.com/u/30335361?s=460&v=4",
+      "buskerName": "Busker",
+      "age": 23,
+      "sex": 1,
+      "instrument": "Guitar, Piano",
+      "introduce": "introduce",
+      "recentPerform": "2019-04-23",
+      "tendencyAllHot": 10445
+    },{
+      "id": 3,
+      "imgUrl": "https://avatars1.githubusercontent.com/u/30335361?s=460&v=4",
+      "buskerName": "Busker",
+      "age": 23,
+      "sex": 1,
+      "instrument": "Guitar, Piano",
+      "introduce": "introduce",
+      "recentPerform": "2019-04-23",
+      "tendencyAllHot": 10445
+    },{
+      "id": 4,
+      "imgUrl": "https://avatars1.githubusercontent.com/u/30335361?s=460&v=4",
+      "buskerName": "Busker",
+      "age": 23,
+      "sex": 1,
+      "instrument": "Guitar, Piano",
+      "introduce": "introduce",
+      "recentPerform": "2019-04-23",
+      "tendencyAllHot": 10445
+    },{
+      "id": 5,
+      "imgUrl": "https://avatars1.githubusercontent.com/u/30335361?s=460&v=4",
+      "buskerName": "Busker",
+      "age": 23,
+      "sex": 1,
+      "instrument": "Guitar, Piano",
+      "introduce": "introduce",
+      "recentPerform": "2019-04-23",
+      "tendencyAllHot": 10445
+    },{
+      "id": 6,
+      "imgUrl": "https://avatars1.githubusercontent.com/u/30335361?s=460&v=4",
+      "buskerName": "Busker",
+      "age": 23,
+      "sex": 1,
+      "instrument": "Guitar, Piano",
+      "introduce": "introduce",
+      "recentPerform": "2019-04-23",
+      "tendencyAllHot": 10445
+    },{
+      "id": 7,
+      "imgUrl": "https://avatars1.githubusercontent.com/u/30335361?s=460&v=4",
+      "buskerName": "Busker",
+      "age": 23,
+      "sex": 1,
+      "instrument": "Guitar, Piano",
+      "introduce": "introduce",
+      "recentPerform": "2019-04-23",
+      "tendencyAllHot": 10445
+    },{
+      "id": 8,
+      "imgUrl": "https://avatars1.githubusercontent.com/u/30335361?s=460&v=4",
+      "buskerName": "Busker",
+      "age": 23,
+      "sex": 1,
+      "instrument": "Guitar, Piano",
+      "introduce": "introduce",
+      "recentPerform": "2019-04-23",
+      "tendencyAllHot": 10445
+    },{
+      "id": 9,
+      "imgUrl": "https://avatars1.githubusercontent.com/u/30335361?s=460&v=4",
+      "buskerName": "Busker",
+      "age": 23,
+      "sex": 1,
+      "instrument": "Guitar, Piano",
+      "introduce": "introduce",
+      "recentPerform": "2019-04-23",
+      "tendencyAllHot": 10445
+    },{
+      "id": 10,
+      "imgUrl": "https://avatars1.githubusercontent.com/u/30335361?s=460&v=4",
+      "buskerName": "Busker",
+      "age": 23,
+      "sex": 1,
+      "instrument": "Guitar, Piano",
+      "introduce": "introduce",
+      "recentPerform": "2019-04-23",
+      "tendencyAllHot": 10445
+    }]
+  }
+}

@@ -35,7 +35,9 @@ export const HomeWebDes = styled.div`
     text-align: center;
   }
   .des{
+    color: #999;
     font-size: 16px;
+    line-height: 24px;
   }
 `;
 

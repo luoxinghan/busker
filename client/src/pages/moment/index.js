@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import {actionCreators} from "./store";
 import {
     MomentWrapper,
@@ -13,7 +13,7 @@ import {
 
 class Moment extends Component{
     render() {
-        const { momentList, getMomentMore, momentPage } = this.props;
+        const { momentList, getMomentMore, momentPage, totalNum } = this.props;
         return (
             <MomentWrapper>
                 <MomentList>
@@ -44,21 +44,30 @@ class Moment extends Component{
                         )
                     })}
                 </MomentList>
-                <MomentMore onClick={()=>{getMomentMore(momentPage)}}>
-                    More
-                </MomentMore>
+                {
+                    (Moment.isOver(totalNum, momentPage, 5)) ? null :
+                    <MomentMore onClick={()=>{getMomentMore(momentPage)}}>
+                        More
+                    </MomentMore>
+                }
+
             </MomentWrapper>
         );
     }
     componentDidMount() {
         this.props.getMomentData();
     }
+    static isOver(totalNum, momentPage, pageSize ){
+        const totalPage = parseInt((totalNum + pageSize - 1) / pageSize);
+        return momentPage >= totalPage;
+    }
 }
 
 const mapStateToProps = (state) => {
     return {
         momentList: state.get("moment").get("momentList"),
-        momentPage: state.get("moment").get("momentPage")
+        momentPage: state.get("moment").get("momentPage"),
+        totalNum: state.get("moment").get("totalNum")
     }
 };
 
@@ -73,4 +82,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Moment);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Moment));

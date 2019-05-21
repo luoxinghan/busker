@@ -36,7 +36,8 @@ export const NavItem = styled.div`
         color: #9abdb1;
     }
     padding: 0 20px;
-    font-size: 17px;
+    font-size: 16px;
+    font-weight: 400;
     color: #333333;
 `;
 

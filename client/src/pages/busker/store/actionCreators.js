@@ -4,7 +4,8 @@ import {actionTypes} from "./index";
 const getBuskerList = (result,buskerPage) => ({
     type: actionTypes.GET_BUSKER_LIST,
     buskerList: result.buskerList,
-    buskerPage: buskerPage
+    buskerPage: buskerPage,
+    totalNum: result.totalNum
 });
 
 export const getBuskerInfo = (buskerPage) => {

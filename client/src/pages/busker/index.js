@@ -14,7 +14,7 @@ import {Link} from "react-router-dom";
 
 class Busker extends Component{
     render() {
-        const { buskerList, buskerPage, handlePageChange } = this.props;
+        const { buskerList, buskerPage, handlePageChange, totalNum } = this.props;
         return (
             <BuskerWrapper>
                 <BuskerSort>
@@ -26,7 +26,7 @@ class Busker extends Component{
                 <BuskerList>
                     {buskerList.map((item) => {
                         return (
-                            <Link to={'/busker/detail/' + item.get("id")}>
+                            <Link key={item.get("id")} to={'/busker/detail/' + item.get("id")}>
                                 <BuskerItem key={item.get("id")}>
                                     <img alt="" className="busker-avator" src={item.get("imgUrl")} />
                                     <BuskerInfo className="busker-info">
@@ -42,7 +42,7 @@ class Busker extends Component{
                         )
                     })}
                 </BuskerList>
-                <Pagination onChange={handlePageChange} current={buskerPage} pageSize={15} total={50} />
+                <Pagination onChange={handlePageChange} current={buskerPage} pageSize={10} total={totalNum} />
             </BuskerWrapper>
         );
     }
@@ -55,7 +55,8 @@ class Busker extends Component{
 const mapStateToProps = (state) => {
     return {
         buskerList: state.get("busker").get("buskerList"),
-        buskerPage: state.get("busker").get("buskerPage")
+        buskerPage: state.get("busker").get("buskerPage"),
+        totalNum: state.get("busker").get("totalNum")
     }
 };
 

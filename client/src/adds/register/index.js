@@ -73,8 +73,8 @@ class RegistrationForm extends Component {
                 },
             },
         };
-        const { message, redirectTo, data} = this.props;
-        if (data.get("code") !== 0) {
+        const { message, redirectTo, isRegister} = this.props;
+        if (!isRegister) {
             return (
                 <RegisterWrapper>
                     <h3>Register</h3>
@@ -138,7 +138,8 @@ const mapStateToProps = (state) => {
     return {
         message: state.get("register").get("message"),
         redirectTo: state.get("register").get("redirectTo"),
-        data: state.get("register").get("data")
+        data: state.get("register").get("data"),
+        isRegister: state.get("register").get("isRegister")
     }
 };
 

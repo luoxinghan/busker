@@ -5,7 +5,7 @@ const defaultState = fromJS({
     data: [],
     redirectTo: '', // 完成之后跳到哪里
     message: '', // 错误消息
-    isLogin: false // 是否登录
+    isRegister: false // 是否登录
 });
 
 export default (state=defaultState, action) => {
@@ -14,11 +14,16 @@ export default (state=defaultState, action) => {
             return state.merge({
                 data: fromJS(action.data),
                 message: "",
-                redirectTo: "/login"
+                redirectTo: "/login",
+                isRegister: true
             });
         case actionTypes.REGISTER_FAIL:
             return state.merge({
                 message: action.message
+            });
+        case actionTypes.CLEAN_REGISTER:
+            return state.merge({
+                isRegister: false
             });
         default:
             return state;

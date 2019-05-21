@@ -25,10 +25,15 @@ class TrailAdd extends Component{
     };
 
     handleChange = info => {
-        this.setState({
-            fileList: info.fileList,
-            imageId: info.file.response.imageId
-        });
+        if (info.file.status === 'uploading') {
+            return;
+        }
+        if (info.file.status === 'done') {
+            this.setState({
+                fileList: info.fileList,
+                imageId: info.file.response.imageId
+            });
+        }
     };
     handleSubmit = e => {
         e.preventDefault();

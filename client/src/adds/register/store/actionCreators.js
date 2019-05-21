@@ -11,11 +11,15 @@ const registerFail = (message) => ({
     message
 });
 
+export const cleanRegister = () => ({
+    type: actionTypes.CLEAN_REGISTER
+});
+
 export const register = (values) => {
     return (dispatch) => {
         let data = {"username": values.username, "password":values.password, "type": 1};
         axios.post("/api/register/register", data)
-       /* axios.get("/api/register/register")*/
+        /*axios.get("/api/register/register")*/
             .then((res)=>{
                 const result = res.data.data;
                 if (result.code === 0 && res.status === 200) {

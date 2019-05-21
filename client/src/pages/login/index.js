@@ -1,6 +1,8 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
 import {Link, Redirect} from "react-router-dom";
+import {actionCreators} from "./store";
+import {actionCreators as registerActionCreators} from "../../adds/register/store";
 import {
     Form, Icon, Input, Button, Checkbox,
 } from 'antd';
@@ -8,7 +10,7 @@ import {
     LoginWrapper,
     FormWrapper
 } from "./style";
-import {actionCreators} from "./store";
+
 
 class Login extends Component{
     handleSubmit = (e) => {
@@ -21,8 +23,11 @@ class Login extends Component{
     }
     render() {
         const { getFieldDecorator } = this.props.form;
-        const {isLogged} = this.props;
+        const {isLogged, isRegister, cleanTheRegister} = this.props;
         if (!isLogged) {
+            if(isRegister){
+                cleanTheRegister()
+            }
             return (
                 <LoginWrapper>
                     <FormWrapper>
@@ -71,7 +76,8 @@ const WrappedNormalLoginForm = Form.create({ name: 'normal_login' })(Login);
 
 const mapStateToProps = (state) => {
     return {
-        isLogged: state.get("login").get("isLogged")
+        isLogged: state.get("login").get("isLogged"),
+        isRegister: state.get("register").get("isRegister")
     }
 };
 
@@ -79,6 +85,9 @@ const mapDispatchToProps = (dispatch) => {
     return {
         login(values){
             dispatch(actionCreators.login(values));
+        },
+        cleanTheRegister(){
+            dispatch(registerActionCreators.cleanRegister());
         }
     }
 };

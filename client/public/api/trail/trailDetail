@@ -1,0 +1,13 @@
+{
+  "success": true,
+  "data": {
+    "trail": {
+      "id": 1,
+      "time": "2019-05-25",
+      "name": "Jay Chou",
+      "address": "г. Гродно, ул. Ожешко, 22, ауд.120",
+      "describe": "Lorem et placerat vestibulum, metus nisi posuere nisl, in accumsan elit odio quis mi.Lorem et placerat vestibulum, metus nisi posuere nisl, in accumsan elit odio quis mi.Lorem et placerat vestibulum, metus nisi posuere nisl, in accumsan elit odio quis mi.Lorem et placerat vestibulum,",
+      "imgUrl": "//img.alicdn.com/imgextra/i1/2251059038/O1CN01vgwaBm2GdS9yA4EQg_!!0-item_pic.jpg_q60.jpg_.webp"
+    }
+  }
+}

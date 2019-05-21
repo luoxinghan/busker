@@ -1,1 +1,1 @@
-export const GET_BUSKER_LIST = "get_busker_list";
+export const GET_BUSKER_LIST = "busker/get_busker_list";

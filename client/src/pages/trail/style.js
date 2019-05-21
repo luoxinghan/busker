@@ -42,6 +42,7 @@ export const TrailInfo = styled.div`
   }
   .des{
     font-size: 16px;
+    line-height: 25px;
     color: #555;
   }
 `;

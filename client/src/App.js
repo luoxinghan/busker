@@ -9,12 +9,18 @@ import Header from "./common/header";
 import Footer from "./common/footer";
 import Home from "./pages/home";
 import Busker from "./pages/busker";
-import Performance from "./pages/performance";
+import Trail from "./pages/trail";
 import Moment from "./pages/moment";
 import Login from "./pages/login";
+import Register from "./adds/register";
+import TrailAdd from "./adds/trailAdd";
 import MomentDetail from "./details/momentDetail";
+import MomentAdd from "./adds/momentAdd";
 import BuskerDetail from "./details/buskerDetail";
-
+import BuskerUpdate from "./updates/buskerUpdate";
+import Feedback from "./common/feedback";
+import AboutUs from "./common/about";
+import ErrorPage from "./common/error";
 
 class App extends Component {
   render() {
@@ -26,11 +32,18 @@ class App extends Component {
               <Header/>
               <Route path="/" exact component={Home}/>
               <Route path="/busker" exact component={Busker}/>
-              <Route path='/busker/detail/:id' exact component={BuskerDetail}></Route>
-              <Route path="/performance" exact component={Performance}/>
+              <Route path='/busker/detail/:id' exact component={BuskerDetail}/>
+              <Route path="/busker/update/:id" exact component={BuskerUpdate}/>
+              <Route path="/trail" exact component={Trail}/>
+              <Route path="/trail/add" exact component={TrailAdd}/>
               <Route path="/moment" exact component={Moment}/>
-              <Route path='/moment/detail/:id' exact component={MomentDetail}></Route>
+              <Route path='/moment/detail/:id' exact component={MomentDetail}/>
+              <Route path="/moment/add" exact component={MomentAdd}/>
               <Route path="/login" exact component={Login}/>
+              <Route path="/register" exact component={Register}/>
+              <Route path="/feedback" exact component={Feedback}/>
+              <Route path="/aboutus" exact component={AboutUs}/>
+              <Route component={ErrorPage} />
               <Footer/>
           </BrowserRouter>
       </Provider>

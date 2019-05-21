@@ -40,15 +40,17 @@ export const TeamInfo = styled.div`
   display: inline-block;
   width: 450px;
   margin-left: 20px;
-  font-size: 14px;
   .name{
     font-size: 18px;
     font-weight: 600;
+    line-height: 18px;
     padding: 0;
     margin: 0;
   }
   .intro{
     padding: 2px 0;
+    font-size: 14px;
+    line-height: 14px;
     margin: 0;
   }
 `;

@@ -1,0 +1,32 @@
+{
+  "success": true,
+  "data": {
+    "busker": {
+      "id": "3",
+      "imgUrl": "https://avatars1.githubusercontent.com/u/30335361?s=460&v=4",
+      "buskerName": "ed sheeran",
+      "sex": 0,
+      "age": "1989-10-3",
+      "instrument": "Guitaar",
+      "introduce": "great man",
+      "moments": [
+        {
+          "id": 4,
+          "time": "2019-03-26T08:33:16.000Z",
+          "buskerName": "ed sheeran",
+          "address": "г. Гродно, ул. Ожешко, 22, ауд.120",
+          "describe": "000000000000",
+          "tendency": 90,
+          "images": [],
+          "videos": [
+            {
+              "id": 6,
+              "videoUrl": "https://www.youtube.com/watch?v=W_sdEBKrJUE"
+            }
+          ]
+        }
+      ],
+      "trails": []
+    }
+  }
+}

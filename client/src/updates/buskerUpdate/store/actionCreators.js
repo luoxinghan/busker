@@ -40,9 +40,9 @@ export const cleanBuskerUpdate = () => ({
     type: actionTypes.CLEAN_BUSKER_UPDATE
 });
 
-export const getBusker = () => {
+export const getBusker = (id) => {
     return (dispatch) => {
-        axios.get("/api/busker/getBusker?id=" + 3)
+        axios.get("/api/busker/getBusker?id=" + id)
             .then((res)=>{
                 const result = res.data.data;
                 if (result === null) {
@@ -55,6 +55,7 @@ export const getBusker = () => {
 };
 
 export const updateBusker = (id, values, iconId) => {
+    console.log(id, values, iconId);
     return (dispatch) => {
         let data = {
             "buskerId":id,

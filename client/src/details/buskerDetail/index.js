@@ -65,7 +65,7 @@ class BuskerDetail extends Component{
                 <BuskerMomentWrapper>
                     <Title>
                         <h3>Moments</h3>
-                        {currentUser.get("id") === busker.get("id") ? <Button>New Moment</Button> : null}
+                        {currentUser.get("id") === busker.get("id") ? <Link to={"/moment/add"}><Button>New Moment</Button></Link> : null}
                     </Title>
                     <MomentList>
                         {

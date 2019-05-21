@@ -43,7 +43,7 @@ export const BuskerItem = styled.div`
   .busker-avator{
     display: block;
     width: 100%;
-    height: auto;
+    height: 100%;
   }
 `;
 
@@ -52,7 +52,7 @@ export const BuskerInfo = styled.div`
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: #999;
+  background-color: #3498db;
   overflow: hidden;
   width: 100%;
   height: 100%;
@@ -72,7 +72,8 @@ export const BuskerInfo = styled.div`
   }
   .text{
     color: white;
-    font-size: 14px;
+    font-size: 12px;
+    line-height: 14px;
     position: absolute;
     top: 50%;
     left: 50%;

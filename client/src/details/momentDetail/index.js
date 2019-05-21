@@ -50,7 +50,7 @@ class MomentDetail extends Component{
                     </MomentVideoWrapper>
                     <DetailBottom>
                         <BuskerName>{moment.get("address")}</BuskerName>
-                        <Tendency>{moment.get("time")}</Tendency>
+                        <Tendency>{MomentDetail.getAllTime(moment.get("time"))}</Tendency>
                     </DetailBottom>
                 </MomentDetailWrapper>
             );
@@ -88,6 +88,12 @@ class MomentDetail extends Component{
                 )
             })
         )
+    }
+    static getAllTime(time){
+        let lastIndex = time.lastIndexOf(".");
+        time = time.substring(0, lastIndex);
+        time = time.replace("T"," ");
+        return time;
     }
 }
 
