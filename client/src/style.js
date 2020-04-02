@@ -13,6 +13,7 @@ export const GlobalStyled = createGlobalStyle`
 
 html {
   line-height: 1.15; /* 1 */
+  font-size: 62.5%;
   -webkit-text-size-adjust: 100%; /* 2 */
 }
 
@@ -361,5 +362,21 @@ h1, h2, h3, h4, h5, h6{
 p {
     margin-top: 0;
     margin-bottom: 1em;
+}
+
+ol, ul {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+    q:before, q:after {
+    content: '';
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
 }
 `;

@@ -4,7 +4,8 @@ import axios from "axios";
 const getHomeImgAction = (result) => ({
     type: actionTypes.GET_HOME_IMG,
     homeImgList: result.homeImgList,
-    homeWebDes: result.homeWebDes
+    homeWebDes: result.homeWebDes,
+    homeAlbums: result.homeAlbums
 });
 
 export const getHomeData = () => {

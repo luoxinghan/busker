@@ -21,6 +21,7 @@ import BuskerUpdate from "./updates/buskerUpdate";
 import Feedback from "./common/feedback";
 import AboutUs from "./common/about";
 import ErrorPage from "./common/error";
+import Albums from "./pages/album";
 
 class App extends Component {
   render() {
@@ -39,6 +40,7 @@ class App extends Component {
               <Route path="/moment" exact component={Moment}/>
               <Route path='/moment/detail/:id' exact component={MomentDetail}/>
               <Route path="/moment/add" exact component={MomentAdd}/>
+              <Route path="/album" exact component={Albums}/>
               <Route path="/login" exact component={Login}/>
               <Route path="/register" exact component={Register}/>
               <Route path="/feedback" exact component={Feedback}/>

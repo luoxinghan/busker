@@ -5,15 +5,16 @@ export const HeaderWrapper = styled.div`
     position: relative;
     width: 100%;
     margin: 0 auto;
-    height: 58px;
+    height: 64px;
     border-bottom: 1px solid #f1f1f1;
+    background: #000;
 `;
 
 export const NavLogo = styled.a.attrs({
    href: '/'
 })`
-    height: 58px;
-    width: 110px;
+    height: 64px;
+    width: 150px;
     position: absolute;
     top: 0;
     left: 15px;
@@ -23,50 +24,51 @@ export const NavLogo = styled.a.attrs({
 `;
 
 export const Nav = styled.div`
-    width: 960px;
+    width: 860px;
     height: 100%;
     margin: 0 auto;
     box-sizing: border-box;
 `;
 
 export const NavItem = styled.div`
-    line-height: 58px;
+    line-height: 64px;
     float: left;
     &.active{
-        color: #9abdb1;
+        color: #ffffff;
     }
     padding: 0 20px;
-    font-size: 16px;
-    font-weight: 400;
-    color: #333333;
+    font-size: 12px;
+    letter-spacing: 2px;
+    font-weight: 500;
+    color: #ffffff;
 `;
 
 export const Addition = styled.div`
     position: absolute;
     right: 0;
     top: 0;
-    height: 58px;
+    height: 64px;
+    display: flex;
+    align-items: center;
 `;
 
 export const Button = styled.button`
     float: right;
-    margin-top: 14px;
     margin-right: 20px;
-    padding: 0 20px;
+    padding: 0 15px;
     line-height: 28px;
-    border: 1px solid #333;
-    border-radius: 19px;
-    font-size: 14px;
+    border: 1px solid #ffffff;
+    border-radius: 5px;
+    font-size: 12px;
     background: none;
-    color: #333;
+    color: #ffffff;
 `;
 
 export const Avatar = styled.img`
     float: right;
     margin-right: 40px;
-    margin-top: 8px;
     padding: 20px 20px;
-    border: 1px solid #999999;
+    border: 1px solid #ffffff;
     border-radius: 10px;
     background: url("${props => props.imgUrl}");
     background-size:cover;

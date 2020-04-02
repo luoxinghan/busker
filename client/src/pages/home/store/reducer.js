@@ -3,7 +3,8 @@ import {actionTypes} from "./index";
 
 const defaultState = fromJS({
     homeWebDes: "",
-    homeImgList: []
+    homeImgList: [],
+    homeAlbums: []
 });
 
 export default (state=defaultState, action) => {
@@ -11,7 +12,8 @@ export default (state=defaultState, action) => {
         case actionTypes.GET_HOME_IMG:
             return state.merge({
                 homeWebDes: fromJS(action.homeWebDes),
-                homeImgList: fromJS(action.homeImgList)
+                homeImgList: fromJS(action.homeImgList),
+                homeAlbums: fromJS(action.homeAlbums)
             });
         default:
             return state;

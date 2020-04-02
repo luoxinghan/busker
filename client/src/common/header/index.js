@@ -11,10 +11,11 @@ function Header(props) {
         <HeaderWrapper>
             <NavLogo/>
             <Nav>
-                <Link to="/"><NavItem>Home</NavItem></Link>
-                <Link to="/busker"><NavItem>Busker</NavItem></Link>
-                <Link to="/moment"><NavItem>Moment</NavItem></Link>
-                <Link to="/trail"><NavItem>Trail</NavItem></Link>
+                <Link to="/"><NavItem>HOME</NavItem></Link>
+                <Link to="/busker"><NavItem>BUSKERS</NavItem></Link>
+                <Link to="/moment"><NavItem>MOMENTS</NavItem></Link>
+                <Link to="/trail"><NavItem>TRAILS</NavItem></Link>
+                <Link to="/album"><NavItem>ALBUMS</NavItem></Link>
             </Nav>
             <Addition>
                 {
@@ -31,7 +32,7 @@ function Header(props) {
                         } placement="bottomCenter">
                             <Avatar imgUrl={currentUser.get("imgUrl")}/>
                         </Dropdown> :
-                        <Link to="/login"><Button>log in</Button></Link>
+                        <Link to="/login"><Button>LOGIN</Button></Link>
                 }
             </Addition>
         </HeaderWrapper>

@@ -1,13 +1,22 @@
 import styled from "styled-components";
 
 export const BuskerWrapper = styled.div`
-  width: 80%;
-  margin: 20px auto;
+  position: relative;
+  overflow: hidden;
+`;
+
+export const RecommendBusker = styled.div`
+  width: 1180px;
+  margin: 10px auto;
+  padding: 10px 28px;
 `;
 
 export const BuskerSort = styled.div`
+  width: 1180px;
+  margin: 10px auto;
+  padding: 10px 28px;
   h2{
-    font-size: 18px;
+    font-size: 1.8rem;
     color: #333;
     display: inline-block;
   }
@@ -17,10 +26,12 @@ export const BuskerSort = styled.div`
 `;
 
 export const BuskerList = styled.div`
-  overflow: hidden;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  position:relative;
+  width: 1180px;
+  margin: 10px auto;
+  padding: 10px 28px;
+  .ant-pagination {
+    margin: 20px 0;
+  }
   &::after {
     content: "";
     clear: both;
@@ -29,12 +40,8 @@ export const BuskerList = styled.div`
 `;
 
 export const BuskerItem = styled.div`
-  float: left;
-  width: 20%;
-  padding: 5px;
   box-sizing: border-box;
-  position: relative;
-    
+  padding: 20px 0;
   &:hover .busker-info {
     -webkit-transform: scale(1);
     -ms-transform: scale(1);
@@ -52,7 +59,9 @@ export const BuskerInfo = styled.div`
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: #3498db;
+  display: grid;
+  align-items: center;
+  background-color: #000000;
   overflow: hidden;
   width: 100%;
   height: 100%;
@@ -62,22 +71,23 @@ export const BuskerInfo = styled.div`
   -webkit-transition: .5s ease;
   transition: .5s ease;
   .name{
+    text-transform: uppercase;
     color: white;
-    font-size: 20px;
-    position: absolute;
-    top: 20%;
-    left: 50%;
-    transform: translate(-50%, -20%);
+    letter-spacing: 2px;
+    font-size: 2rem;
+    font-family: "Georgia", "serif";
+    font-style: italic;
+    font-weight: bold;
     text-align: center;
   }
   .text{
+    text-transform: uppercase;
+    font-weight: 500;
+    .title{
+      color: #999999;
+    }
     color: white;
-    font-size: 12px;
-    line-height: 14px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    font-size: 1.2rem;
     text-align: center;
   }
 `;

@@ -50,7 +50,6 @@ class Moment extends Component{
                         More
                     </MomentMore>
                 }
-
             </MomentWrapper>
         );
     }

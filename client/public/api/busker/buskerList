@@ -2,10 +2,32 @@
   "success": true,
   "data": {
     "totalNum": 30,
+    "recommendBusker":[
+    {
+     "id": 1,
+     "imgUrl": "https://avatars1.githubusercontent.com/u/30335361?s=460&v=4",
+     "buskerName": "Busker",
+     "age": 23,
+     "sex": 1,
+     "instrument": "Guitar, Piano",
+     "introduce": "introduce",
+     "recentPerform": "2019-04-23",
+     "tendencyAllHot": 10445
+   },{
+     "id": 2,
+     "imgUrl": "https://avatars1.githubusercontent.com/u/15577175?s=460&v=4",
+     "buskerName": "GOrogoj jOgha",
+     "age": 23,
+     "sex": 1,
+     "instrument": "Guitar, Piano",
+     "introduce": "introduce",
+     "recentPerform": "2019-04-23",
+     "tendencyAllHot": 10445
+   }],
     "buskerList": [{
       "id": 1,
       "imgUrl": "https://avatars1.githubusercontent.com/u/30335361?s=460&v=4",
-      "buskerName": "Busker",
+      "buskerName": "GOrogoj jOgha",
       "age": 23,
       "sex": 1,
       "instrument": "Guitar, Piano",
@@ -14,7 +36,7 @@
       "tendencyAllHot": 10445
     },{
       "id": 2,
-      "imgUrl": "https://avatars1.githubusercontent.com/u/30335361?s=460&v=4",
+      "imgUrl": "https://avatars1.githubusercontent.com/u/15577175?s=460&v=4",
       "buskerName": "Busker",
       "age": 23,
       "sex": 1,
@@ -24,7 +46,7 @@
       "tendencyAllHot": 10445
     },{
       "id": 3,
-      "imgUrl": "https://avatars1.githubusercontent.com/u/30335361?s=460&v=4",
+      "imgUrl": "https://avatars1.githubusercontent.com/u/30145671?s=460&v=4",
       "buskerName": "Busker",
       "age": 23,
       "sex": 1,
@@ -34,7 +56,7 @@
       "tendencyAllHot": 10445
     },{
       "id": 4,
-      "imgUrl": "https://avatars1.githubusercontent.com/u/30335361?s=460&v=4",
+      "imgUrl": "https://avatars1.githubusercontent.com/u/14561783?s=460&v=4",
       "buskerName": "Busker",
       "age": 23,
       "sex": 1,
@@ -44,7 +66,7 @@
       "tendencyAllHot": 10445
     },{
       "id": 5,
-      "imgUrl": "https://avatars1.githubusercontent.com/u/30335361?s=460&v=4",
+      "imgUrl": "https://avatars1.githubusercontent.com/u/1467898?s=460&v=4",
       "buskerName": "Busker",
       "age": 23,
       "sex": 1,
@@ -54,7 +76,7 @@
       "tendencyAllHot": 10445
     },{
       "id": 6,
-      "imgUrl": "https://avatars1.githubusercontent.com/u/30335361?s=460&v=4",
+      "imgUrl": "https://avatars1.githubusercontent.com/u/1125996?s=460&v=4",
       "buskerName": "Busker",
       "age": 23,
       "sex": 1,
@@ -74,7 +96,7 @@
       "tendencyAllHot": 10445
     },{
       "id": 8,
-      "imgUrl": "https://avatars1.githubusercontent.com/u/30335361?s=460&v=4",
+      "imgUrl": "https://api.adorable.io/avatars/285/adf.png",
       "buskerName": "Busker",
       "age": 23,
       "sex": 1,
@@ -94,7 +116,7 @@
       "tendencyAllHot": 10445
     },{
       "id": 10,
-      "imgUrl": "https://avatars1.githubusercontent.com/u/30335361?s=460&v=4",
+      "imgUrl": "https://api.adorable.io/avatars/400/abott@adorable.io.png",
       "buskerName": "Busker",
       "age": 23,
       "sex": 1,
