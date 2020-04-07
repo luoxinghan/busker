@@ -14,6 +14,7 @@ import Moment from "./pages/moment";
 import Login from "./pages/login";
 import Register from "./adds/register";
 import TrailAdd from "./adds/trailAdd";
+import TrailDetail from "./pages/trailDetail";
 import MomentDetail from "./details/momentDetail";
 import MomentAdd from "./adds/momentAdd";
 import BuskerDetail from "./details/buskerDetail";
@@ -22,6 +23,8 @@ import Feedback from "./common/feedback";
 import AboutUs from "./common/about";
 import ErrorPage from "./common/error";
 import Albums from "./pages/album";
+import SponsorUs from "./pages/sponsor";
+import "./mock";
 
 class App extends Component {
   render() {
@@ -37,6 +40,7 @@ class App extends Component {
               <Route path="/busker/update/:id" exact component={BuskerUpdate}/>
               <Route path="/trail" exact component={Trail}/>
               <Route path="/trail/add" exact component={TrailAdd}/>
+              <Route path="/trail/detail/:id" exact component={TrailDetail}/>
               <Route path="/moment" exact component={Moment}/>
               <Route path='/moment/detail/:id' exact component={MomentDetail}/>
               <Route path="/moment/add" exact component={MomentAdd}/>
@@ -45,6 +49,7 @@ class App extends Component {
               <Route path="/register" exact component={Register}/>
               <Route path="/feedback" exact component={Feedback}/>
               <Route path="/aboutus" exact component={AboutUs}/>
+              <Route path="/sponsor" exact component={SponsorUs}/>
               <Route component={ErrorPage} />
               <Footer/>
           </BrowserRouter>

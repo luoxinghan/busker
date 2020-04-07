@@ -1,9 +1,13 @@
 import React, {Component} from "react";
-import {Form, Input} from 'antd';
+import {Form, Input, Button} from 'antd';
 import {
     FeedbackWrapper,
-    FeedbackHeader
+    FeedbackInfo,
+    FeedbackImg,
+    FeedbackContent
 } from "./style";
+import {Content, Title} from "../style";
+import email from "../../statics/email.png";
 
 class Feedback extends Component{
     handleSubmit = e => {
@@ -19,17 +23,53 @@ class Feedback extends Component{
         const { getFieldDecorator } = this.props.form;
         return(
             <FeedbackWrapper>
-                <FeedbackHeader>
-                    <h3>Feedback</h3>
-                </FeedbackHeader>
-                <Form onSubmit={this.handleSubmit}>
-                    <Form.Item>
-                        {getFieldDecorator('feedback')(<Input.TextArea
-                            onPressEnter={this.handleSubmit}
-                            rows={10}
-                            placeholder="Please explain your question or share your thoughts. (Enter to submit)"/>)}
-                    </Form.Item>
-                </Form>
+                <Content>
+                    <Title>
+                        <span>Feedback</span>
+                    </Title>
+                    <FeedbackInfo>
+                        <FeedbackImg className="email-img"><img src={email} alt="feedback"/></FeedbackImg>
+                        <FeedbackContent>
+                            <Form className="feedback-form" onSubmit={this.handleSubmit}>
+                                <Form.Item>
+                                    {getFieldDecorator('fname', {
+                                        rules: [{ required: true, message: 'Please input your first name!', whitespace: true }],
+                                    })(<Input placeholder="First Name" />)}
+                                </Form.Item>
+                                <Form.Item>
+                                    {getFieldDecorator('lname', {
+                                        rules: [{ required: true, message: 'Please input your last name!', whitespace: true }],
+                                    })(<Input placeholder="Last Name" />)}
+                                </Form.Item>
+                                <Form.Item>
+                                    {getFieldDecorator('email', {
+                                        rules: [
+                                            {
+                                                type: 'email',
+                                                message: 'The input is not valid E-mail!',
+                                            },
+                                            {
+                                                required: true,
+                                                message: 'Please input your E-mail!',
+                                            },
+                                        ],
+                                    })(<Input placeholder="What's your email?"/>)}
+                                </Form.Item>
+                                <Form.Item>
+                                    {getFieldDecorator('feedback')(<Input.TextArea
+                                        onPressEnter={this.handleSubmit}
+                                        rows={4}
+                                        placeholder="Please explain your question or share your thoughts. (Enter to submit)"/>)}
+                                </Form.Item>
+                                <Form.Item>
+                                    <Button type="primary" htmlType="submit">
+                                        Register
+                                    </Button>
+                                </Form.Item>
+                            </Form>
+                        </FeedbackContent>
+                    </FeedbackInfo>
+                </Content>
             </FeedbackWrapper>
         )
     }

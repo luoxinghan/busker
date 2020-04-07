@@ -1,14 +1,32 @@
 import styled from "styled-components";
 
 export const FeedbackWrapper = styled.div`
-  width: 1024px;
-  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
 `;
 
-export const FeedbackHeader = styled.div`
-  padding: 15px 0;
-  h3{
-    font-size: 24px;
-    color: #1a1a1a;
+export const FeedbackInfo = styled.div`
+  padding: 10px 0;
+  display: flex;
+`;
+
+export const FeedbackImg = styled.div`
+  width: 40%;
+  text-align: center;
+  img{
+    width: 80%;
+  }
+`;
+
+export const FeedbackContent = styled.div`
+  width: 60%;
+  .feedback-form{
+    width: 60%;
+    margin: 0 auto;
+  }
+  .ant-btn{
+    width: 100%;
+    background: #000;
+    border: 1px solid #000;
   }
 `;

@@ -31,7 +31,7 @@ function Footer() {
                         <li><Link className="link-content" to="/">Home</Link></li>
                         <li><Link className="link-content" to="/aboutus">About Us</Link></li>
                         <li><Link className="link-content" to="/feedback">Contact Us</Link></li>
-                        <li><Link className="link-content" to="/feedback">Sponsor Us</Link></li>
+                        <li><Link className="link-content" to="/sponsor">Sponsor Us</Link></li>
                     </ul>
                 </FooterMid>
             </FooterInfo>
