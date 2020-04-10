@@ -68,17 +68,17 @@ export const ItemInfo = styled.div`
     box-shadow: 0 20px 25px -15px rgba(0, 0, 0, 0.3);
     cursor: pointer;
     transition: .4s;
-  &::after {
-      content: '';
-      position: absolute;
-      border-style: solid;
-      width: 0;
-      height: 0;
-      top: 30px;
-      right: -15px;
-      border-width: 10px 0 10px 15px;
-      border-color: transparent transparent transparent #f5f5f5;
-  }
+    p{
+        color: #1a1a1a;
+        font-size: 1.2rem;
+        margin: 5px 0;
+        span{
+            text-transform: uppercase;
+            letter-spacing: .075em;
+            font-weight: 600;
+            color: #b3b3b3;
+        }
+    }
   .date {
     background: #FF4081;
     display: inline-block;
@@ -88,20 +88,23 @@ export const ItemInfo = styled.div`
     top: 0;
     right: 0;
   }
-  .busker-name{
-    color: #778beb;
-    margin-bottom: 5px;
-    font-size: 16px;
-  }
   .iconfont{
-    font-size: 14px;
+    font-size: 1.4rem;
+  }
+  .des{
+    font-size: 1.4rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
   }
   &:hover{
     opacity: 0.8;
   }
 `;
 
-export const ItemHeader =styled.div`
+export const ItemHeader = styled.div`
   height: 200px;
   position: relative;
   margin-bottom: 20px;
@@ -119,5 +122,5 @@ export const MomentMore = styled.p`
   text-align: center;
   margin: 20px;
   cursor: pointer;
-  font-size: 18px;
+  font-size: 1.8rem;
 `;

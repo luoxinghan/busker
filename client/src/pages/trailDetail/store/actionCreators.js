@@ -13,7 +13,7 @@ const getTrailRequest = () => ({
 export const getTrail = (trailId) => {
     return (dispatch) => {
         dispatch(getTrailRequest());
-        axios.post("/api/trail/trailDetail", {trailId})
+        axios.post("/api/trail/detail", {trailId})
             .then((res)=>{
                 dispatch(getTrailSuccess(res.data.data));
             }).catch(()=>{

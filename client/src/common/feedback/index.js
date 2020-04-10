@@ -63,7 +63,7 @@ class Feedback extends Component{
                                 </Form.Item>
                                 <Form.Item>
                                     <Button type="primary" htmlType="submit">
-                                        Register
+                                        SEND
                                     </Button>
                                 </Form.Item>
                             </Form>

@@ -15,6 +15,11 @@ export const TrailItem = styled.div`
   margin: 60px auto 20px auto;
   border-radius: 10px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  &:hover{
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2);
+    background: #f9f9f9;
+  }
   
   .poster-pic{
     float: left;
@@ -30,18 +35,24 @@ export const TrailItem = styled.div`
 export const TrailInfo = styled.div`
   width: 660px;
   padding: 20px;
-  font-size: 18px;
+  font-size: 1.8rem;
   overflow: hidden;
   display: inline-block;
   .time{
     color: #555;
+    font-size: 1.4rem;
+    font-weight: 600;
   }
   .address{
-    font-size: 16px;
+    font-size: 1.4rem;
     color: #999;
+    span{
+      font-weight: 600;
+      color: #1a1a1a;
+    }
   }
   .des{
-    font-size: 16px;
+    font-size: 1.6rem;
     line-height: 25px;
     color: #555;
   }
@@ -52,5 +63,5 @@ export const TrailListMore = styled.div`
   margin: 20px auto;
   cursor: pointer;
   text-align: center;
-  font-size: 25px;
+  font-size: 2.5rem;
 `;

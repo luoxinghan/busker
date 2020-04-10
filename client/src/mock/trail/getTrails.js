@@ -6,7 +6,7 @@ export default Mock.mock('/api/trail/trails','get',{
         code: 200,
         trailList: [{
             id: 1,
-            time: "2019-05-25",
+            time: "2019-05-25 12:00:00",
             trailName: "Jay Chou",
             site:"Pizza & Coffe Restaurant",
             address: "г. Гродно, ул. Ожешко, 22, ауд.120",

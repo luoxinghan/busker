@@ -1,25 +1,27 @@
 import {fromJS} from "immutable";
 import {actionTypes} from "./index";
+import {getTotalPage, pagination} from "../../../common/utils/pagination";
 
 const defaultState = fromJS({
     momentList: [],
-    momentPage: 1,
-    totalNum: 0
+    momentShow: [],
+    totalPage: 0,
+    current: 1
 });
 
 export default (state=defaultState, action) => {
     switch (action.type) {
         case actionTypes.GET_MOMENT_LIST:
             return state.merge({
-                totalNum: action.totalNum,
+                current: 1,
                 momentList: fromJS(action.momentList),
-                momentPage: 1,
+                momentShow: pagination(fromJS(action.momentList), action.perpage, 1),
+                totalPage: getTotalPage(action.momentList, action.perpage)
             });
-        case actionTypes.GET_MOMENT_MORE:
+        case actionTypes.CHANGE_MOMENT_PAGE:
             return state.merge({
-                totalNum: action.totalNum,
-                momentList: state.get("momentList").concat(fromJS(action.momentList)),
-                momentPage: action.nextPage
+                momentShow: state.get("momentShow").concat(pagination(state.get("momentList"), action.perpage, action.current)),
+                current: action.current
             });
         default:
             return state;

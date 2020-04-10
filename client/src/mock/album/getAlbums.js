@@ -6,6 +6,7 @@ export default Mock.mock('/api/album/albums','get',{
         code: 200,
         albumsList: [{
             albumsId: 1,
+            buskerId: 1,
             buskerName: "Isabelia herrera",
             albumsName: "After Hours",
             author: "The Weekend",
@@ -13,6 +14,7 @@ export default Mock.mock('/api/album/albums','get',{
             publishTime: "2020-04-02 23:21:39"
         },{
             albumsId: 2,
+            buskerId: 3,
             buskerName: "Andy Beta",
             albumsName: "Who Sent You? I Sent You? How About You?",
             author: "Irreversible Entanglements",
@@ -20,6 +22,7 @@ export default Mock.mock('/api/album/albums','get',{
             publishTime: "2020-04-01 23:21:39"
         },{
             albumsId: 4,
+            buskerId: 5,
             buskerName: "Ruth Saxelby",
             albumsName: "Fountain",
             author: "Lyra Pramuk",
@@ -27,6 +30,7 @@ export default Mock.mock('/api/album/albums','get',{
             publishTime: "2020-03-31 23:21:39"
         },{
             albumsId: 5,
+            buskerId: 7,
             buskerName: "Paul A. Thompson",
             albumsName: "3.15.20",
             author: "Childish Gambino",
@@ -34,6 +38,7 @@ export default Mock.mock('/api/album/albums','get',{
             publishTime: "2020-03-22 23:21:39"
         },{
             albumsId: 6,
+            buskerId: 10,
             buskerName: "Alphonse Pierre",
             albumsName: "PARTYNEXTDOOR",
             author: "PARTYMOBILE",
@@ -41,6 +46,7 @@ export default Mock.mock('/api/album/albums','get',{
             publishTime: "2020-03-21 13:04:12"
         },{
             albumsId: 7,
+            buskerId: 9,
             buskerName: "Kathryn St. Asaph",
             albumsName: "Before Love Came to Kill Us",
             author: "Jessie Reyez",
@@ -48,6 +54,7 @@ export default Mock.mock('/api/album/albums','get',{
             publishTime: "2020-03-21 03:00:13"
         },{
             albumsId: 8,
+            buskerId: 11,
             buskerName: "Sean T. Collins",
             albumsName: "Ghosts V: Together / Ghosts VI: Locusts",
             author: "Nice Inch Nails",
@@ -55,6 +62,7 @@ export default Mock.mock('/api/album/albums','get',{
             publishTime: "2020-03-20 12:31:03"
         },{
             albumsId: 9,
+            buskerId: 12,
             buskerName: "Rob Arcand",
             albumsName: "Snapshot of a Beginner",
             author: "Nap Eyes",
@@ -62,6 +70,7 @@ export default Mock.mock('/api/album/albums','get',{
             publishTime: "2020-03-14 19:02:11"
         },{
             albumsId: 10,
+            buskerId: 13,
             buskerName: "Matthew Ismael Ruiz",
             albumsName: "We Are Sent Here by History",
             author: "Shabaka and the Ancestors",
@@ -69,6 +78,7 @@ export default Mock.mock('/api/album/albums','get',{
             publishTime: "2020-03-12 10:20:12"
         },{
             albumsId: 12,
+            buskerId: 14,
             buskerName: "Evan RyTlewski",
             albumsName: "Empty Country",
             author: "Empty Country",

@@ -10,6 +10,7 @@ Mock.mock('/api/moment/detail','post',function(option){
             moment: {
                 id: 1,
                 time: "2018-03-11 15:16:17",
+                buskerId: 2,
                 buskerName: "Busker1",
                 address: "China, ChongQing",
                 describe: "动态的内容",

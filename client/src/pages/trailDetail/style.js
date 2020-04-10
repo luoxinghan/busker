@@ -39,3 +39,46 @@ export const TrailContent = styled.div`
     font-size: 1.4rem;
   }
 `;
+
+export const LikeArea = styled.div`
+  
+`;
+
+export const ShareArea = styled.div`
+  padding: 10px 0;
+  button{
+    margin-right: 5px;
+  }
+  button:hover{
+    opacity: 0.7;
+  }
+`;
+
+export const TrailExtraInfo = styled.div`
+  overflow: hidden;
+  .des{
+    font-size: 1.6rem;
+    color: #1a1a1a;
+    letter-spacing: 1px;
+  }
+`;
+
+export const BuskersList = styled.div`
+  display: flow;
+  .busker-item{
+    width: 80px;
+    margin: 20px;
+    text-align: center;
+  }
+  img{
+    border-radius: 50%;
+    width: 100%;
+  }
+  .busker-name{
+    margin-top: 10px;
+    font-size: 1rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    color: #1a1a1a;
+  }
+`;

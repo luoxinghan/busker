@@ -16,7 +16,7 @@ export const BuskerSort = styled.div`
   margin: 10px auto;
   padding: 10px 28px;
   h2{
-    font-size: 1.8rem;
+    font-size: 1.4rem;
     color: #333;
     display: inline-block;
   }

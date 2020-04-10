@@ -16,9 +16,17 @@ import {Title} from "../../common/style";
 
 const { Search } = Input;
 
+let perpage = 12;
 class Busker extends Component{
+    constructor(props) {
+        super(props);
+        this.state = {
+            ageSort: true,
+            tenSort: true
+        }
+    }
     render() {
-        const {recommendBusker, buskerList, buskerPage, handlePageChange, totalNum } = this.props;
+        const {recommendBusker, buskerList, buskerShow, handlePageChange, current } = this.props;
         return (
             <BuskerWrapper>
                 <RecommendBusker>
@@ -47,17 +55,21 @@ class Busker extends Component{
                 </RecommendBusker>
                 <BuskerSort>
                     <h2>SORT BY: </h2>
-                    <Button icon="caret-up">Age</Button>
-                    <Button icon="caret-up">Tendency</Button>
+                    <Button onClick={()=> this.sortBuskerByAge()} icon={this.state.ageSort ? "caret-up" : "caret-down"}>Age</Button>
+                    <Button onClick={()=> this.sortBuskerByTendency()} icon={this.state.tenSort ? "caret-up" : "caret-down"}>Tendency</Button>
                     <Search
-                        placeholder="Please input text"
-                        onSearch={value => console.log(value)}
+                        placeholder="Busker name"
+                        onSearch={(value) => this.findBusker(value)}
                         style={{ width: 200 }}
                     />
+                    {/*<AutoComplete
+                        dataSource={buskerList.map({})}
+                        style={{width: 200}}
+                        />*/}
                 </BuskerSort>
                 <BuskerList>
                     <Row justify="space-between" gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
-                    {buskerList.map((item) => {
+                    {buskerShow.map((item) => {
                         return (
                             <Link key={item.get("id")} to={'/busker/detail/' + item.get("id")}>
                                 <Col span={4}>
@@ -77,14 +89,32 @@ class Busker extends Component{
                         )
                     })}
                     </Row>
-                    <Pagination onChange={handlePageChange} current={buskerPage} pageSize={10} total={totalNum} />
+                    <Pagination onChange={handlePageChange} current={current} pageSize={perpage} total={buskerList.size} />
                 </BuskerList>
             </BuskerWrapper>
         );
     }
     componentDidMount() {
-        const {getBuskerData, buskerPage} = this.props;
-        getBuskerData(buskerPage);
+        const {getBuskerData} = this.props;
+        getBuskerData(perpage);
+    }
+    sortBuskerByAge(){
+        this.setState({
+            ageSort: !this.state.ageSort
+        });
+        this.props.sortByAge(!this.state.ageSort);
+    }
+    sortBuskerByTendency(){
+        this.setState({
+            tenSort: !this.state.tenSort
+        });
+        this.props.sortByTendency(!this.state.tenSort);
+    }
+    findBusker(value){
+        if(value === ""){
+            return
+        }
+        this.props.findBusker(value);
     }
 }
 
@@ -92,18 +122,29 @@ const mapStateToProps = (state) => {
     return {
         recommendBusker: state.get("busker").get("recommendBusker"),
         buskerList: state.get("busker").get("buskerList"),
-        buskerPage: state.get("busker").get("buskerPage"),
-        totalNum: state.get("busker").get("totalNum")
+        buskerShow: state.get("busker").get("buskerShow"),
+        totalPage: state.get("busker").get("totalPage"),
+        current: state.get("busker").get("current")
     }
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getBuskerData(buskerPage){
-            dispatch(actionCreators.getBuskerInfo(buskerPage));
+        getBuskerData(perpage){
+            dispatch(actionCreators.getBuskerInfo(perpage));
+            dispatch(actionCreators.getRecommendBusker());
         },
-        handlePageChange(page){
-            dispatch(actionCreators.getBuskerInfo(page));
+        handlePageChange(current){
+            dispatch(actionCreators.changePage(perpage, current));
+        },
+        sortByAge(as){
+            dispatch(actionCreators.sortByAge(as));
+        },
+        sortByTendency(as){
+            dispatch(actionCreators.sortByTendency(as));
+        },
+        findBusker(value){
+            dispatch(actionCreators.searchBusker(value));
         }
     }
 };

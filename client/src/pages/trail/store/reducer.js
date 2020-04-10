@@ -1,25 +1,27 @@
 import {fromJS} from "immutable";
 import {actionTypes} from "./index";
+import {pagination, getTotalPage} from "../../../common/utils/pagination";
 
 const defaultState = fromJS({
     trailList: [],
-    trailPage: 1,
-    totalNum: 0
+    trailShow: [],
+    totalPage: 0,
+    current: 1
 });
 
 export default (state=defaultState, action) => {
     switch (action.type) {
         case actionTypes.GET_TRAIL_LIST:
             return state.merge({
+                current: 1,
                 trailList: fromJS(action.trailList),
-                trailPage: 1,
-                totalNum: action.totalNum
+                trailShow: pagination(fromJS(action.trailList), action.perpage, 1),
+                totalPage: getTotalPage(action.trailList, action.perpage)
             });
-        case actionTypes.GET_TRAIL_LIST_MORE:
+        case actionTypes.CHANGE_TRAIL_PAGE:
             return state.merge({
-                totalNum: action.totalNum,
-                trailList: state.get("trailList").concat(fromJS(action.trailList)),
-                trailPage: action.nextPage
+                trailShow: state.get("trailShow").concat(pagination(state.get("trailList"), action.perpage, action.current)),
+                current: action.current
             });
         default:
             return state;

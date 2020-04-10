@@ -13,7 +13,7 @@ const getAlbumsRequest = () => ({
 export const getAllAlbums = () => {
     return (dispatch) => {
         dispatch(getAlbumsRequest());
-        axios.get("/api/album/albumsList.json").then((res)=>{
+        axios.get("/api/album/albums").then((res)=>{
             dispatch(getBuskerList(res.data.data));
         }).catch((e)=>{
             console.log(e);

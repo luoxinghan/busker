@@ -10,14 +10,17 @@ import {
     ItemInfo,
     MomentMore
 } from "./style";
+import moment from "moment";
+
+let perpage = 2;
 
 class Moment extends Component{
     render() {
-        const { momentList, getMomentMore, momentPage, totalNum } = this.props;
+        const { momentShow, current, totalPage } = this.props;
         return (
             <MomentWrapper>
                 <MomentList>
-                    {momentList.map((item)=>{
+                    {momentShow.map((item)=>{
                         let bgUrl = "";
                         let title = "MOMENT";
                         if (item.get("videos").size === 0 && item.get("images").size === 0){
@@ -35,9 +38,10 @@ class Moment extends Component{
                                         <ItemHeader bgUrl={bgUrl} className="timeline-img-header">
                                             <h2><span className="iconfont">&#xe72f;{item.get("tendency")}</span></h2>
                                         </ItemHeader>
-                                        <p className="busker-name">{item.get("buskerName")}</p>
+                                        <p className="busker-name"><span>Busker: </span>{item.get("buskerName")}</p>
+                                        <p className="time"><span>Time: </span>{moment(item.get("time")).format("lll")}</p>
                                         <div className="date">{title}</div>
-                                        <p>{item.get("describe")}</p>
+                                        <p className="des">{item.get("describe")}</p>
                                     </Link>
                                 </ItemInfo>
                             </MomentItem>
@@ -45,8 +49,8 @@ class Moment extends Component{
                     })}
                 </MomentList>
                 {
-                    (Moment.isOver(totalNum, momentPage, 5)) ? null :
-                    <MomentMore onClick={()=>{getMomentMore(momentPage)}}>
+                    (current >= totalPage) ? null :
+                    <MomentMore onClick={()=>{this.nextPage()}}>
                         More
                     </MomentMore>
                 }
@@ -54,29 +58,31 @@ class Moment extends Component{
         );
     }
     componentDidMount() {
-        this.props.getMomentData();
+        this.props.getMomentData(perpage);
     }
-    static isOver(totalNum, momentPage, pageSize ){
-        const totalPage = parseInt((totalNum + pageSize - 1) / pageSize);
-        return momentPage >= totalPage;
+
+    nextPage(){
+        const { current } = this.props;
+        this.props.changePage(perpage, current + 1);
     }
 }
 
 const mapStateToProps = (state) => {
     return {
         momentList: state.get("moment").get("momentList"),
-        momentPage: state.get("moment").get("momentPage"),
-        totalNum: state.get("moment").get("totalNum")
+        momentShow: state.get("moment").get("momentShow"),
+        totalPage: state.get("moment").get("totalPage"),
+        current: state.get("moment").get("current")
     }
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getMomentData(){
-            dispatch(actionCreators.getMomentData());
+        getMomentData(perpage){
+            dispatch(actionCreators.getMomentData(perpage));
         },
-        getMomentMore(momentPage){
-            dispatch(actionCreators.getListMore(momentPage))
+        changePage(perpage, current){
+            dispatch(actionCreators.changePage(perpage, current))
         }
     }
 };

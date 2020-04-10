@@ -1,35 +1,24 @@
 import axios from "axios";
 import {actionTypes} from "./index";
 
-const getMomentList = (result) => ({
+const getMomentList = (result, perpage) => ({
     type: actionTypes.GET_MOMENT_LIST,
     momentList: result.momentList,
-    totalNum: result.totalNum
+    perpage: perpage
 });
 
-const getMomentMore = (result, nextPage) => ({
-    type: actionTypes.GET_MOMENT_MORE,
-    totalNum: result.totalNum,
-    momentList: result.momentList,
-    nextPage: nextPage
+export const changePage = (perpage, current) => ({
+    type: actionTypes.CHANGE_MOMENT_PAGE,
+    perpage,
+    current
 });
 
-export const getMomentData = () => {
+export const getMomentData = (perpage) => {
   return (dispatch) => {
-      axios.get("/api/moment/momentList?page=1").then((res)=>{
-          dispatch(getMomentList(res.data.data));
+      axios.get("/api/moment/moments").then((res)=>{
+          dispatch(getMomentList(res.data.data, perpage));
       }).catch(()=>{
           console.log("/api/moment/momentList not found!");
       })
   }
-};
-
-export const getListMore = (page) => {
-    return (dispatch) => {
-        axios.get("/api/moment/momentList?page=" + (page + 1)).then((res)=>{
-            dispatch(getMomentMore(res.data.data, page + 1))
-        }).catch((e)=>{
-            console.log(e);
-        })
-    }
 };
