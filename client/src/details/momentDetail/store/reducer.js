@@ -7,7 +7,7 @@ const defaultState = fromJS({
 
 export default (state=defaultState, action) => {
     switch (action.type) {
-        case actionTypes.CHANGE_MOMENT_DETAIL:
+        case actionTypes.GET_MOMENT_DETAIL_SUCCESS:
             return state.set("moment", fromJS(action.moment));
         default:
             return state;

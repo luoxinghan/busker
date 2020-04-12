@@ -1,21 +1,24 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
 import {actionCreators} from "./store";
-import {Carousel} from "antd";
+import {Carousel, Skeleton} from "antd";
 import YouTube from "react-youtube";
 import {
     MomentDetailWrapper,
-    DetailHeader,
-    DetailBody,
+    MomentDetailInfo,
+    BuskerDetail,
+    MomentDescribe,
     BuskerName,
-    Tendency,
     MomentImgWrapper,
     ImgCarouselItem,
     MomentContent,
-    MomentVideoWrapper,
-    VideoItem,
-    DetailBottom
+    MomentVideo,
+    VideoItem
 } from "./style";
+import {createLoadingSelector} from "../../common/utils/selectors";
+import moment from "moment";
+import {Title} from "../../common/style";
+import {Link} from "react-router-dom";
 
 const opts = {
     height: '185',
@@ -27,31 +30,39 @@ const opts = {
 
 class MomentDetail extends Component{
     render() {
-        const {moment} = this.props;
-        if (moment.size === 0) {
-            return null;
+        const {momentDetail, isLoading} = this.props;
+        if (momentDetail.size === 0) {
+            return (
+                <MomentDetailWrapper>
+                    <MomentDetailInfo>
+                        <Skeleton loading={isLoading} active/>
+                    </MomentDetailInfo>
+                </MomentDetailWrapper>
+            );
         } else {
             return (
                 <MomentDetailWrapper>
-                    <DetailHeader>
-                        <BuskerName><span className="iconfont">&#xe606;</span> {moment.get("buskerName")}</BuskerName>
-                        <Tendency><span className="iconfont">&#xe72f;</span> {moment.get("tendency")}</Tendency>
-                    </DetailHeader>
-                    <DetailBody>
-                        <MomentImgWrapper>
-                            {moment.get("images").size === 0 ? "" : this.getImages(moment.get("buskerName"), moment.get("images"))}
-                        </MomentImgWrapper>
-                        <MomentContent>
-                            {moment.get("describe")}
-                        </MomentContent>
-                    </DetailBody>
-                    <MomentVideoWrapper>
-                        {moment.get("videos").size === 0 ? "" : this.getVideos(moment.get("videos"))}
-                    </MomentVideoWrapper>
-                    <DetailBottom>
-                        <BuskerName>{moment.get("address")}</BuskerName>
-                        <Tendency>{MomentDetail.getAllTime(moment.get("time"))}</Tendency>
-                    </DetailBottom>
+                    <MomentDetailInfo>
+                        <Skeleton loading={isLoading} active>
+                            <MomentImgWrapper>
+                                {momentDetail.get("images").size === 0 ? "" : this.getImages(momentDetail.get("buskerName"), momentDetail.get("images"))}
+                            </MomentImgWrapper>
+                            <MomentContent>
+                                <BuskerDetail>
+                                    <BuskerName>By: <Link to={"/busker/detail/" + momentDetail.get("buskerId")}><span>{momentDetail.get("buskerName")}</span></Link></BuskerName>
+                                    <p>Views: <span>{momentDetail.get("tendency")}</span></p>
+                                    <p>{momentDetail.get("address")}</p>
+                                    <p><span>{moment(momentDetail.get("time")).format("llll")}</span></p>
+                                </BuskerDetail>
+
+                                <MomentDescribe><p>{momentDetail.get("describe")}</p></MomentDescribe>
+                            </MomentContent>
+                            <Title><span>Videos</span></Title>
+                            <MomentVideo>
+                                {momentDetail.get("videos").size === 0 ? "" : this.getVideos(momentDetail.get("videos"))}
+                            </MomentVideo>
+                        </Skeleton>
+                    </MomentDetailInfo>
                 </MomentDetailWrapper>
             );
         }
@@ -79,27 +90,23 @@ class MomentDetail extends Component{
         return (
             videos.map((item)=>{
                 return (
-                    <VideoItem>
-                    <YouTube
-                        opts={opts}
-                        videoId={item.get("videoUrl")}
-                    />
+                    <VideoItem key={item.get("id")}>
+                        <YouTube
+                            opts={opts}
+                            videoId={item.get("videoUrl")}
+                        />
                     </VideoItem>
                 )
             })
         )
     }
-    static getAllTime(time){
-        let lastIndex = time.lastIndexOf(".");
-        time = time.substring(0, lastIndex);
-        time = time.replace("T"," ");
-        return time;
-    }
 }
 
+const loadingSelector = createLoadingSelector(['GET_MOMENT_DETAIL']);
 const mapStateToProps = (state) => {
     return {
-        moment: state.get("momentDetail").get("moment")
+        momentDetail: state.get("momentDetail").get("moment"),
+        isLoading: loadingSelector(state)
     }
 };
 

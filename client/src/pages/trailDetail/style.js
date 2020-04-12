@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const DetailWrapper = styled.div`
   position: relative;
-  overflow: hidden;
 `;
 
 export const TrailInfoArea = styled.div`
@@ -37,6 +36,9 @@ export const TrailContent = styled.div`
   }
   time{
     font-size: 1.4rem;
+  }
+  a{
+    color: #ff3530;
   }
 `;
 

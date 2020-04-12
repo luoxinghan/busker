@@ -13,7 +13,7 @@ Mock.mock('/api/moment/detail','post',function(option){
                 buskerId: 2,
                 buskerName: "Busker1",
                 address: "China, ChongQing",
-                describe: "动态的内容",
+                describe: "动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容",
                 tendency: 123,
                 images: [
                     {
@@ -29,9 +29,14 @@ Mock.mock('/api/moment/detail','post',function(option){
                     {
                         id: 1,
                         videoUrl: "s1pSx-ngqJs"
-                    },
-                    {
+                    }, {
                         id: 2,
+                        videoUrl: "Ico2q2M24JU"
+                    }, {
+                        id: 3,
+                        videoUrl: "s1pSx-ngqJs"
+                    }, {
+                        id: 4,
                         videoUrl: "Ico2q2M24JU"
                     }
                 ]

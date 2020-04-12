@@ -1,22 +1,21 @@
 import styled from "styled-components";
 
 export const FooterWrapper = styled.div`
-  padding: 30px 0;
-  background: #000;
-  width: 100%;
-  margin: 0 auto;
+  position: relative;
+  
 `;
 
 export const FooterInfo = styled.div`
-    width: 1180px;
+    min-width: 1180px;
     margin: 0 auto;
-    overflow: hidden;
+    padding: 30px 20px;
     display: flex;
     align-items: center;
+    background: #000;
 `;
 
 export const FooterLeft = styled.div`
-  width: 40%;
+  width: 30%;
   .footer-pic{
       max-width: 120px;
     }

@@ -22,7 +22,7 @@ import {Title, HorizontalTitle} from "../../common/style";
 class TrailDetail extends Component {
     componentDidMount() {
         const { getTrail } = this.props;
-        getTrail();
+        getTrail(this.props.match.params.id);
     }
 
     render() {
@@ -102,8 +102,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getTrail(){
-            dispatch(actionCreators.getTrail(1))
+        getTrail(trailId){
+            dispatch(actionCreators.getTrail(trailId))
         }
     }
 };

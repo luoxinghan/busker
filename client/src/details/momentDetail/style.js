@@ -1,44 +1,22 @@
 import styled from "styled-components";
 
 export const MomentDetailWrapper = styled.div`
-  width: 1024px;
-  margin: 0 auto;
+  position: relative;
 `;
 
-export const DetailHeader = styled.div`
-  width: 100%;
-  padding: 30px 0;
-  border-bottom: 1px solid #f1f1f1;
-  .iconfont{
-    font-size: 16px;
-  }
-`;
-
-export const BuskerName = styled.p`
-  float: left;
-  display: block;
-  color: #333;
-`;
-
-export const Tendency = styled.p`
-  float: right;
-  display: block;
-  color: #d35400;
-`;
-
-export const DetailBody = styled.div`
-  padding: 20px 0;
-  overflow: hidden;
+export const MomentDetailInfo = styled.div`
+  width: 1180px;
+  margin: 10px auto;
+  padding: 10px 28px;
 `;
 
 export const MomentImgWrapper = styled.div`
-  width: 600px;
-  float: left;
+  width: 100%;
   display: block;
   .ant-carousel .slick-slide {
     text-align: center;
-    height: 400px;
-    line-height: 400px;
+    height: 650px;
+    line-height: 650px;
     background: #364d79;
     overflow: hidden;
     border-radius: 2px;
@@ -50,36 +28,68 @@ export const MomentImgWrapper = styled.div`
   }
 `;
 
+export const MomentContent = styled.div`
+  padding: 30px 20px;
+  width: 100%;
+  display: flow;
+`;
+
+export const BuskerDetail = styled.div`
+  width: 30%;
+  p{
+    font-size: 1.2rem;
+    color: #1a1a1a;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 1px;
+    padding: 0;
+    margin: 2px 0;
+    span{
+      color: #999999;
+      text-transform: none;
+    }
+  }
+`;
+
+export const MomentDescribe = styled.div`
+  width: 70%;
+  p{
+    color: #222222;
+    font-size: 1.6rem;
+    line-height: 24px;
+  }
+  p:first-letter{
+    float: left;
+    font-size: 4.8em;
+    line-height: 1.1em;
+    margin: -.15em .08em -.2em 0;
+  }
+`;
+
 export const ImgCarouselItem = styled.div`
   background: url("${props => props.imgUrl}");
   background-size: cover;
 `;
 
-export const MomentContent = styled.div`
-  width: 290px;
-  float: right;
-  display: inline-block;
-`;
 
-export const MomentVideoWrapper = styled.div`
-  width: 910px;
-  margin: 0 auto;
-  overflow:hidden;
+
+export const MomentVideo = styled.div`
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-gap: 10px;
+  padding: 10px;
 `;
 
 export const VideoItem = styled.div`
-  width: 320px;
-  float: left;
-  margin: 10px;
-  display: block;
+  background-color: #000;
+  text-align: center;
+  padding: 20px 0;
+  font-size: 30px;
 `;
 
-export const DetailBottom = styled.div`
-  width: 100%;
-  padding: 20px 0;
-  margin-bottom: 20px;
-  border-top: 1px solid #f1f1f1;
-  .iconfont{
-    font-size: 16px;
+export const BuskerName = styled.p`
+  span:hover{
+      cursor: pointer;
+      color: #ff3530;
   }
 `;

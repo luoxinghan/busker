@@ -2,13 +2,18 @@ import axios from "axios";
 import {actionTypes} from "./index";
 
 const changeMomentDetail = (result) => ({
-    type: actionTypes.CHANGE_MOMENT_DETAIL,
+    type: actionTypes.GET_MOMENT_DETAIL_SUCCESS,
     moment: result.moment
 });
 
-export const getMomentDetail = (id) => {
+const getMomentDetailRequest = () => ({
+    type: actionTypes.GET_MOMENT_DETAIL_REQUEST
+});
+
+export const getMomentDetail = (momentId) => {
     return (dispatch) => {
-        axios.get("/api/moment/momentDetail?id=" + id)
+        dispatch(getMomentDetailRequest());
+        axios.post("/api/moment/detail", {momentId})
             .then((res)=>{
                 const result = res.data.data;
                 dispatch(changeMomentDetail(result));

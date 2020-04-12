@@ -3,7 +3,6 @@ import {keyFrameRun} from "../../common/keyFrames";
 
 export const HomeWrapper = styled.div`
     position: relative;
-    overflow: hidden;
 `;
 
 export const HomeCarousel = styled.div`
@@ -39,6 +38,7 @@ export const AlbumsWrapper = styled.div`
 export const AlbumsItem = styled.div`
     padding: 10px 0;
     display: flex;
+    color: #1a1a1a;
     &:hover{
         cursor: pointer;
         .album-img{
@@ -56,8 +56,11 @@ export const AlbumsImg = styled.div`
        border-radius: 50%;
     }
     p{
-      font-size: 1.4rem;
+      margin: 5px 0;
+      font-size: 1.2rem;
       .busker-name{
+        color: #999;
+        font-weight: 600;
         text-transform: uppercase;
       }
     }

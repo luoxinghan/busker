@@ -23,6 +23,7 @@ import Feedback from "./common/feedback";
 import AboutUs from "./common/about";
 import ErrorPage from "./common/error";
 import Albums from "./pages/album";
+import AlbumDetail from "./pages/albumDetail";
 import SponsorUs from "./pages/sponsor";
 import "./mock";
 
@@ -45,12 +46,12 @@ class App extends Component {
               <Route path='/moment/detail/:id' exact component={MomentDetail}/>
               <Route path="/moment/add" exact component={MomentAdd}/>
               <Route path="/album" exact component={Albums}/>
+              <Route path="/album/detail/:id" exact component={AlbumDetail}/>
               <Route path="/login" exact component={Login}/>
               <Route path="/register" exact component={Register}/>
               <Route path="/feedback" exact component={Feedback}/>
               <Route path="/aboutus" exact component={AboutUs}/>
               <Route path="/sponsor" exact component={SponsorUs}/>
-              <Route component={ErrorPage} />
               <Footer/>
           </BrowserRouter>
       </Provider>

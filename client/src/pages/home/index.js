@@ -18,6 +18,7 @@ import {
 } from "./style";
 import {Title} from "../../common/style";
 import YouTube from "react-youtube";
+import {Link} from "react-router-dom";
 
 const opts = {
     width: '100%',
@@ -51,24 +52,26 @@ class Home extends Component {
                     <Title><span>Recommended for you</span></Title>
                     { homeAlbums.map((item) => {
                         return (
-                            <AlbumsItem>
-                                <AlbumsImg>
-                                    <img className="album-img" src={item.get("imgUrl")} alt={item.get("imgUrl")}/>
-                                    <p>By: <span className="busker-name">{item.get("buskerName")}</span></p>
-                                </AlbumsImg>
-                                <AlbumsInfo>
-                                    <InfoName>
-                                        <div className="left-info">
-                                            <h2>{item.get("author")}</h2>
-                                            <h1>{item.get("albumName")}</h1>
-                                        </div>
-                                        <Score>
-                                            {item.get("score")}
-                                        </Score>
-                                    </InfoName>
-                                    <p>{item.get("describe")}</p>
-                                </AlbumsInfo>
-                            </AlbumsItem>
+                            <Link to={"/album/detail/" + item.get("id")} key={item.get("id")}>
+                                <AlbumsItem>
+                                    <AlbumsImg>
+                                        <img className="album-img" src={item.get("imgUrl")} alt={item.get("imgUrl")}/>
+                                        <p>By: <span className="busker-name">{item.get("buskerName")}</span></p>
+                                    </AlbumsImg>
+                                    <AlbumsInfo>
+                                        <InfoName>
+                                            <div className="left-info">
+                                                <h2>{item.get("author")}</h2>
+                                                <h1>{item.get("albumName")}</h1>
+                                            </div>
+                                            <Score>
+                                                {item.get("score")}
+                                            </Score>
+                                        </InfoName>
+                                        <p>{item.get("describe")}</p>
+                                    </AlbumsInfo>
+                                </AlbumsItem>
+                            </Link>
                         )
                     })}
                 </AlbumsWrapper>
