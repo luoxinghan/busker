@@ -8,6 +8,7 @@
     "axios": "^0.18.0",
     "immutable": "^4.0.0-rc.12",
     "lodash": "latest",
+    "md5": "^2.2.1",
     "mockjs": "^1.1.0",
     "moment": "^2.24.0",
     "react": "^16.8.6",

@@ -13,7 +13,6 @@ export default (state=defaultState, action) => {
         case actionTypes.REGISTER_SUCCESS:
             return state.merge({
                 data: fromJS(action.data),
-                message: "",
                 redirectTo: "/login",
                 isRegister: true
             });

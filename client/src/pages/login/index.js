@@ -10,6 +10,7 @@ import {
     LoginWrapper,
     FormWrapper
 } from "./style";
+import moment from "moment";
 
 
 class Login extends Component{
@@ -20,7 +21,7 @@ class Login extends Component{
                 this.props.login(values);
             }
         });
-    }
+    };
     render() {
         const { getFieldDecorator } = this.props.form;
         const {isLogged, isRegister, cleanTheRegister} = this.props;

@@ -13,13 +13,15 @@ export const changeLogout = () => ({
     currentUser: {}
 });
 
-export const login = (values) => {
+export const login = (values, props) => {
     return (dispatch) => {
-        axios.get("/api/login/login?username=" + values.username + "&password=" + values.password)
+        axios.post("/api/login", values)
             .then((res)=>{
                 const result = res.data.data;
                 if (result.isLogged) {
+                    localStorage.setItem('currentUser', JSON.stringify(result.currentUser));
                     dispatch(changeLogin(result.currentUser));
+                    props.history.push("/");
                 } else {
                     alert('登录失败！');
                 }

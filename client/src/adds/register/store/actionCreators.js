@@ -17,8 +17,8 @@ export const cleanRegister = () => ({
 
 export const register = (values) => {
     return (dispatch) => {
-        let data = {"username": values.username, "password":values.password, "type": 1};
-        axios.post("/api/register/register", data)
+        let data = {"username": values.username, "password":values.password, "usertype": 1};
+        axios.post("/api/register", data)
         /*axios.get("/api/register/register")*/
             .then((res)=>{
                 const result = res.data.data;

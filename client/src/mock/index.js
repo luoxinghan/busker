@@ -14,7 +14,12 @@ import * as recommendBusker from "./busker/recommendBusker";
 import * as addComment from "./comment/addComment";
 
 import * as homepage from "./home/homepage";
+
+import * as login from "./user/login";
+
 export {
+    login,
+
     homepage,
     getAlbums,
     getAlbumsById,

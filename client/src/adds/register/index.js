@@ -5,13 +5,22 @@ import { Redirect } from "react-router-dom";
 import {
     Form,
     Input,
-    Button, Alert,
+    Button, Alert, Row, Col
 } from 'antd';
 import {
-    RegisterWrapper
+    RegisterWrapper,
+    RegisterInfo
 } from "./style";
 
 class RegistrationForm extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            count: 60,
+            liked: true
+        }
+    }
+
     state = {
         confirmDirty: false,
         autoCompleteResult: [],
@@ -48,80 +57,98 @@ class RegistrationForm extends Component {
         callback();
     };
 
+    countDown(){
+        const {count} = this.state;
+        if (count === 1){
+            this.setState({
+                count: 60,
+                liked: true
+            });
+        } else {
+            this.setState({
+                count: count - 1,
+                liked: false
+            });
+            setTimeout(this.countDown.bind(this), 1000)
+        }
+    }
+
+    handleClick = () => {
+        const {liked} = this.state;
+        console.log("some",liked);
+        if (!liked) {
+            return;
+        }
+        this.countDown();
+    };
+
+
     render() {
         const { getFieldDecorator } = this.props.form;
 
-        const formItemLayout = {
-            labelCol: {
-                xs: { span: 24 },
-                sm: { span: 8 },
-            },
-            wrapperCol: {
-                xs: { span: 24 },
-                sm: { span: 16 },
-            },
-        };
-        const tailFormItemLayout = {
-            wrapperCol: {
-                xs: {
-                    span: 24,
-                    offset: 0,
-                },
-                sm: {
-                    span: 16,
-                    offset: 8,
-                },
-            },
-        };
         const { message, redirectTo, isRegister} = this.props;
         if (!isRegister) {
             return (
                 <RegisterWrapper>
-                    <h3>Register</h3>
-                    {message !== "" ? <Alert message={message} type="error" showIcon closable /> : null}
-                    <Form {...formItemLayout} onSubmit={this.handleSubmit}>
-                        <Form.Item label="Username">
-                            {getFieldDecorator('username', {
-                                rules: [
-                                    {
-                                        required: true,
-                                        message: 'Please input your username!',
-                                    },
-                                ],
-                            })(<Input/>)}
-                        </Form.Item>
-                        <Form.Item label="Password">
-                            {getFieldDecorator('password', {
-                                rules: [
-                                    {
-                                        required: true,
-                                        message: 'Please input your password!',
-                                    },
-                                    {
-                                        validator: this.validateToNextPassword,
-                                    },
-                                ],
-                            })(<Input.Password allowClear />)}
-                        </Form.Item>
-                        <Form.Item label="Confirm Password">
-                            {getFieldDecorator('confirm', {
-                                rules: [
-                                    {
-                                        required: true,
-                                        message: 'Please confirm your password!',
-                                    },
-                                    {
-                                        validator: this.compareToFirstPassword,
-                                    },
-                                ],
-                            })(<Input.Password allowClear onBlur={this.handleConfirmBlur}/>)}
-                        </Form.Item>
-                        <Form.Item {...tailFormItemLayout}>
-                            <Button type="primary" htmlType="submit">
-                                Register
-                            </Button>
-                        </Form.Item>
-                    </Form>
+                    <RegisterInfo>
+                        <h1>Sign up</h1>
+                        {message !== "" ? <Alert message={message} type="error" showIcon closable /> : null}
+                        <Form onSubmit={this.handleSubmit}>
+                            <Form.Item>
+                                {getFieldDecorator('username', {
+                                    rules: [
+                                        {
+                                            required: true,
+                                            message: 'Please input your email!',
+                                        },
+                                    ],
+                                })(<Input placeholder="Email"/>)}
+                            </Form.Item>
+                            <Form.Item extra="We must make sure that your are a human.">
+                                <Row gutter={16}>
+                                    <Col span={16}>
+                                        {getFieldDecorator('captcha', {
+                                            rules: [{ required: true, message: 'Please input the captcha you got!' }],
+                                        })(<Input placeholder="Captcha"/>)}
+                                    </Col>
+                                    <Col span={8}>
+                                        {this.state.liked ? <Button onClick={this.handleClick}>Get captcha</Button> : <Button disabled>{this.state.count}s Resend Captcha</Button>}
+                                    </Col>
+                                </Row>
+                            </Form.Item>
+                            <Form.Item >
+                                {getFieldDecorator('password', {
+                                    rules: [
+                                        {
+                                            required: true,
+                                            message: 'Please input your password!',
+                                        },
+                                        {
+                                            validator: this.validateToNextPassword,
+                                        },
+                                    ],
+                                })(<Input.Password allowClear placeholder="Password"/>)}
+                            </Form.Item>
+                            <Form.Item>
+                                {getFieldDecorator('confirm', {
+                                    rules: [
+                                        {
+                                            required: true,
+                                            message: 'Please confirm your password!',
+                                        },
+                                        {
+                                            validator: this.compareToFirstPassword,
+                                        },
+                                    ],
+                                })(<Input.Password allowClear onBlur={this.handleConfirmBlur} placeholder="Confirm password"/>)}
+                            </Form.Item>
+                            <Form.Item>
+                                <Button type="primary" htmlType="submit">
+                                    Sign in
+                                </Button>
+                            </Form.Item>
+                        </Form>
+                    </RegisterInfo>
                 </RegisterWrapper>
             );
         } else {
