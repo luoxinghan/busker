@@ -11,10 +11,12 @@ export const ProfileUpdateWrapper = styled.div`
   overflow: hidden;
   position: relative;
   .avatar-upload{
-    width: 200px;
-    height: 200px;
     float: left;
     border-radius: 5px;
+  }
+  .avatar-uploader > .ant-upload {
+    width: 200px;
+    height: 200px;
   }
 `;
 

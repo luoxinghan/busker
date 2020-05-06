@@ -10,6 +10,11 @@ export default Mock.mock('/api/album/albums','get',{
             buskerName: "Isabelia herrera",
             albumsName: "After Hours",
             author: "The Weekend",
+            price: 14.23,
+            score: 8.9,
+            sales: 41,
+            singleNumber: 4,
+            albumStatus: 1,
             imgUrl: "https://media.pitchfork.com/photos/5e6fcda64b101700083a93ce/1:1/w_160/After%20Hours_The%20Weeknd.jpg",
             publishTime: "2020-04-02 23:21:39"
         },{
@@ -18,6 +23,11 @@ export default Mock.mock('/api/album/albums','get',{
             buskerName: "Andy Beta",
             albumsName: "Who Sent You? I Sent You? How About You?",
             author: "Irreversible Entanglements",
+            price: 14.23,
+            score: 8.9,
+            sales: 41,
+            singleNumber: 4,
+            albumStatus: 1,
             imgUrl: "https://media.pitchfork.com/photos/5e7115dc4b101700083a93d7/1:1/w_160/Who%20Sent%20You?_Irreversible%20Entanglements.jpg",
             publishTime: "2020-04-01 23:21:39"
         },{
@@ -26,6 +36,11 @@ export default Mock.mock('/api/album/albums','get',{
             buskerName: "Ruth Saxelby",
             albumsName: "Fountain",
             author: "Lyra Pramuk",
+            price: 14.23,
+            score: 8.9,
+            sales: 41,
+            singleNumber: 4,
+            albumStatus: 1,
             imgUrl: "https://media.pitchfork.com/photos/5e72887e25a55d0008c629d3/1:1/w_160/Fountain_Lyra%20Pramuk.jpg",
             publishTime: "2020-03-31 23:21:39"
         },{
@@ -34,6 +49,11 @@ export default Mock.mock('/api/album/albums','get',{
             buskerName: "Paul A. Thompson",
             albumsName: "3.15.20",
             author: "Childish Gambino",
+            price: 14.23,
+            score: 8.9,
+            sales: 41,
+            singleNumber: 4,
+            albumStatus: 1,
             imgUrl: "https://media.pitchfork.com/photos/5e79231f2a54c60008d8e38f/1:1/w_160/3.15.20_Childish%20Gambino.jpg",
             publishTime: "2020-03-22 23:21:39"
         },{
@@ -42,6 +62,11 @@ export default Mock.mock('/api/album/albums','get',{
             buskerName: "Alphonse Pierre",
             albumsName: "PARTYNEXTDOOR",
             author: "PARTYMOBILE",
+            price: 14.23,
+            score: 8.9,
+            sales: 41,
+            singleNumber: 4,
+            albumStatus: 1,
             imgUrl: "https://media.pitchfork.com/photos/5e7e6f191f638000081a6a18/1:1/w_160/partymobile.jpg",
             publishTime: "2020-03-21 13:04:12"
         },{
@@ -50,6 +75,11 @@ export default Mock.mock('/api/album/albums','get',{
             buskerName: "Kathryn St. Asaph",
             albumsName: "Before Love Came to Kill Us",
             author: "Jessie Reyez",
+            price: 14.23,
+            score: 8.9,
+            sales: 41,
+            singleNumber: 4,
+            albumStatus: 3,
             imgUrl: "https://media.pitchfork.com/photos/5e83770fe4c42e0008da7c7c/1:1/w_160/Before%20Love%20Came%20to%20Kill%20Us_Jessie%20Reyez.jpg",
             publishTime: "2020-03-21 03:00:13"
         },{
@@ -58,6 +88,11 @@ export default Mock.mock('/api/album/albums','get',{
             buskerName: "Sean T. Collins",
             albumsName: "Ghosts V: Together / Ghosts VI: Locusts",
             author: "Nice Inch Nails",
+            price: 14.23,
+            score: 8.9,
+            sales: 41,
+            singleNumber: 4,
+            albumStatus: 2,
             imgUrl: "https://media.pitchfork.com/photos/5e7e69a2fd3a8b0008fc4f47/1:1/w_160/ghostsv.jpg",
             publishTime: "2020-03-20 12:31:03"
         },{
@@ -66,6 +101,11 @@ export default Mock.mock('/api/album/albums','get',{
             buskerName: "Rob Arcand",
             albumsName: "Snapshot of a Beginner",
             author: "Nap Eyes",
+            price: 14.23,
+            score: 8.9,
+            sales: 41,
+            singleNumber: 4,
+            albumStatus: 1,
             imgUrl: "https://media.pitchfork.com/photos/5e7e746f1f638000081a6a1c/1:1/w_160/snapshot.jpg",
             publishTime: "2020-03-14 19:02:11"
         },{
@@ -74,6 +114,11 @@ export default Mock.mock('/api/album/albums','get',{
             buskerName: "Matthew Ismael Ruiz",
             albumsName: "We Are Sent Here by History",
             author: "Shabaka and the Ancestors",
+            price: 14.23,
+            score: 8.9,
+            sales: 41,
+            singleNumber: 4,
+            albumStatus: 4,
             imgUrl: "https://media.pitchfork.com/photos/5e7284725138f70008053491/1:1/w_160/History_Shabaka%20Ancestors.jpg",
             publishTime: "2020-03-12 10:20:12"
         },{
@@ -82,6 +127,11 @@ export default Mock.mock('/api/album/albums','get',{
             buskerName: "Evan RyTlewski",
             albumsName: "Empty Country",
             author: "Empty Country",
+            price: 6.8,
+            score: 3.2,
+            sales: 41,
+            singleNumber: 4,
+            albumStatus: 1,
             imgUrl: "https://media.pitchfork.com/photos/5e74e8222a54c60008d8e383/1:1/w_160/Empty%20Country_Empty%20Country.jpg",
             publishTime: "2020-03-12: 01:01:01"
         }]

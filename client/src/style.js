@@ -34,6 +34,7 @@ body {
 
 main {
   display: block;
+  padding-top: 64px;
 }
 
 /**

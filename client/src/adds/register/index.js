@@ -106,12 +106,12 @@ class RegistrationForm extends Component {
                             </Form.Item>
                             <Form.Item extra="We must make sure that your are a human.">
                                 <Row gutter={16}>
-                                    <Col span={16}>
+                                    <Col span={8}>
                                         {getFieldDecorator('captcha', {
                                             rules: [{ required: true, message: 'Please input the captcha you got!' }],
                                         })(<Input placeholder="Captcha"/>)}
                                     </Col>
-                                    <Col span={8}>
+                                    <Col span={16}>
                                         {this.state.liked ? <Button onClick={this.handleClick}>Get captcha</Button> : <Button disabled>{this.state.count}s Resend Captcha</Button>}
                                     </Col>
                                 </Row>

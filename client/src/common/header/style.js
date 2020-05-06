@@ -2,14 +2,15 @@ import styled from 'styled-components';
 import logoPic from '../../statics/logo.png';
 
 export const HeaderWrapper = styled.div`
-    position: relative;
+    position: fixed;
+    z-index: 100;
+    width: 100%;
 `;
 
 export const HeaderInfo = styled.div`
     min-width: 1180px;
     margin: 0 auto;
     height: 64px;
-    border-bottom: 1px solid #f1f1f1;
     background: #000;
 `;
 

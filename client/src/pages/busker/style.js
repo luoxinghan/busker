@@ -6,7 +6,7 @@ export const BuskerWrapper = styled.div`
 
 export const RecommendBusker = styled.div`
   width: 1180px;
-  margin: 10px auto;
+  margin: 0 auto;
   padding: 10px 28px;
 `;
 

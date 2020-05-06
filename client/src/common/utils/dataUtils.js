@@ -26,3 +26,12 @@ export const findImmutableJSList = (findItem, findData) => {
         return x.get(findItem) === findData;
     }
 };
+
+export const deleteObjectNull = (values) => {
+    for (const key in values) {              // 去除对象内多余的空值key
+        if (values[key] === '' || typeof values[key] === "undefined") {
+            delete values[key]
+        }
+    }
+    return values;
+};

@@ -20,6 +20,7 @@ export const AlbumsInfo = styled.div`
 
 export const AlbumItem = styled.div`  
   min-height: 1px;
+  filter: ${props => props.filter};
   .pub-date{
     text-transform: uppercase;
     font-size: 1rem;
@@ -71,4 +72,16 @@ export const AlbumExtra = styled.div`
    .busker-name:hover{
         opacity: 0.7;
    }
+`;
+
+export const AlbumContent = styled.div`
+    p{
+      margin: 5px;
+      font-size: 1.2rem;
+      color: #2b2b2b;
+      font-weight: 700;
+    }
+    .price{
+      color: #2ecc71;
+    }
 `;

@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
-import {Carousel} from "antd";
+import {Carousel, Button, Row, Col} from "antd";
 import "antd/dist/antd.css";
 import {actionCreators} from "./store";
 import {
@@ -14,11 +14,12 @@ import {
     AlbumsInfo,
     InfoName,
     Score,
-    HomeWebDes
+    HomeWebDes, VideoSection
 } from "./style";
 import {Title} from "../../common/style";
 import YouTube from "react-youtube";
 import {Link} from "react-router-dom";
+import HomeVideo from "../../statics/video/tbp_01.mp4"
 
 const opts = {
     width: '100%',
@@ -35,7 +36,7 @@ class Home extends Component {
         const {homeImgList, homeWebDes, homeAlbums} = this.props;
         return (
             <HomeWrapper>
-                <HomeCarousel>
+                {/*<HomeCarousel>
                     <Carousel autoplay>
                         {
                             homeImgList.map((item) => {
@@ -47,7 +48,24 @@ class Home extends Component {
                             })
                         }
                     </Carousel>
-                </HomeCarousel>
+                </HomeCarousel>*/}
+                <VideoSection>
+                    <div className="video-mask"/>
+                    <video autoPlay loop>
+                        <source src={HomeVideo} type="video/mp4"/>
+                    </video>
+                    <div className="container">
+                        <h1>Descover amazing street performers</h1>
+                        <Row gutter={16} justify="space-around" type="flex">
+                            <Col span={10}>
+                                <Button>JOIN AS A BUSKER</Button>
+                            </Col>
+                            <Col span={10}>
+                                <Button>JOIN AS A FAN</Button>
+                            </Col>
+                        </Row>
+                    </div>
+                </VideoSection>
                 <AlbumsWrapper>
                     <Title><span>Recommended for you</span></Title>
                     { homeAlbums.map((item) => {

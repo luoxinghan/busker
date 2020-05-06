@@ -1,12 +1,14 @@
 // 使用 Mock
 import Mock from 'mockjs'
 
-Mock.mock('/api/upload/picture','post',function(option){
+Mock.mock('/api/image/upload','post',function(option){
+    console.log(...option.body)
     return Mock.mock({
         success: true,
-        message: "上传成功!",
         data: {
-            name: "ACyIbrQNcJwxGM7.jpg",
+            code: 200,
+            message: "上传成功",
+            resourceId: 1,
             url: "https://i.loli.net/2019/11/17/pudaovbTefSJsDx.jpg"
         }
     })

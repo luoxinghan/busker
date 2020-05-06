@@ -16,6 +16,7 @@ import {
     TrailAddWrapper,
     TrailFormWrapper
 } from "./style";
+import NotLoginPage from "../../common/components/NotLogin";
 
 class TrailAdd extends Component{
     state = {
@@ -157,7 +158,7 @@ class TrailAdd extends Component{
             }
         } else {
             return (
-                <Redirect to="/login"/>
+                <NotLoginPage/>
             )
         }
     }

@@ -11,7 +11,7 @@ import { reducer as buskerDetailReducer } from "../details/buskerDetail/store";
 import { reducer as registerReducer } from "../adds/register/store";
 import { reducer as buskerUpdateReducer } from "../updates/buskerUpdate/store";
 import { reducer as albumReducer } from "../pages/album/store";
-import { reducer as albumDetailReducer } from "../pages/albumDetail/store";
+import { reducer as albumDetailReducer } from "../details/albumDetail/store";
 import {loadingReducer} from "../common/utils/loadingReducer";
 
 /*

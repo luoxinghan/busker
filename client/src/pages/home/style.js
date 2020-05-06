@@ -24,6 +24,59 @@ export const HomeCarousel = styled.div`
     }
 `;
 
+export const VideoSection = styled.section`
+    height: 80vh;
+    min-height: 480px;
+    position: relative;
+    overflow: hidden;
+    padding: 0;
+    video{
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -100;
+        min-width: 100%;
+        min-height: 100%;
+    }
+    .video-mask{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -98;
+        display: block;
+        background-image: url("https://busk.co/lib/images/index_dots.png");
+        background-repeat: repeat;
+    }
+    .container{
+        position: absolute;
+        transform: translate(-50%, -50%);
+        top: 50%;
+        left: 50%;
+        h1{
+          font-size: 32px;
+          color: #f0f0f0;
+          font-style: italic;
+        }
+        button{
+          height: 42px;
+          width: 100%;
+          background: #1a1a1a;
+          color: #f0f0f0;
+          border: 1px solid #f0f0f0;
+          text-transform: uppercase;
+        }
+        button:hover{
+          background: #f0f0f0;
+          color: #1a1a1a;
+          border: 1px solid #1a1a1a;
+        }
+    }
+    
+`;
+
+
 export const HomeCarouselItem = styled.div`
   background: url("${props => props.imgUrl}");
   background-size: 100% 100%;

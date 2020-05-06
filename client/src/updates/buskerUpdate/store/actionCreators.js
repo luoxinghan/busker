@@ -1,81 +1,41 @@
 import {actionTypes} from "./index";
 import axios from "axios";
+import {message} from "antd";
 
 const getNoBusker = () => ({
-    type: actionTypes.NO_BUSKER,
-    imageUrl: null,
-    loading: false
+    type: actionTypes.NO_BUSKER
 });
 
-const getHaveBusker = (imageUrl, currentBusker) => ({
+const getHaveBusker = (busker) => ({
     type: actionTypes.HAVE_BUSKER,
-    imageUrl:  imageUrl,
-    loading: false,
-    currentBusker: currentBusker
+    busker: busker
 });
 
-const updateBuskerSuccess = (data) => ({
-    type: actionTypes.UPDATE_BUSKER_SUCCESS,
-    data
-});
-
-const updateBuskerFail = (message) => ({
-    type: actionTypes.UPDATE_BUSKER_FAIL,
-    message
-});
-
-
-export const changeLoading = (loading) => ({
-    type: actionTypes.CHANGE_LOADING,
-    loading
-});
-
-export const changeImageUrl = (imageUrl, loading) => ({
-    type: actionTypes.CHANGE_IMAGE_URL,
-    imageUrl,
-    loading
-});
-
-export const cleanBuskerUpdate = () => ({
-    type: actionTypes.CLEAN_BUSKER_UPDATE
-});
-
-export const getBusker = (id) => {
+export const getBusker = (data) => {
     return (dispatch) => {
-        axios.get("/api/busker/getBusker?id=" + id)
+        axios.post("/api/busker/detail", data)
             .then((res)=>{
                 const result = res.data.data;
                 if (result === null) {
                     dispatch(getNoBusker());
                 } else {
-                    dispatch(getHaveBusker(result.busker.imgUrl, result.busker));
+                    dispatch(getHaveBusker(result.busker));
                 }
             })
     }
 };
 
-export const updateBusker = (id, values, iconId) => {
-    console.log(id, values, iconId);
+export const updateBusker = (values, props) => {
     return (dispatch) => {
-        let data = {
-            "buskerId":id,
-            "nickName": values.nickname,
-            "dateOfBirth": values.birth,
-            "instruments": values.instrument,
-            "introduction": values.introduce,
-            "sex": values.sex,
-            "iconId": iconId
-        };
-        /*console.log(data);*/
-        axios.post("/api/busker/addBusker", data)
-        /*axios.get("/api/busker/addBusker")*/
+        axios.post("/api/busker/update", values)
             .then((res)=>{
-                const result = res.data.data;
-                if (result.code === 0 && res.status === 200) {
-                    dispatch(updateBuskerSuccess(result));
+                const result = res.data;
+                if (result.success) {
+                    message.info(result.data.message);
                 } else {
-                    dispatch(updateBuskerFail(result.message));
+                    message.error(result.data.message);
                 }
+                props.history.push("/busker/detail/" + values.buskerId);
             })
     }
 };

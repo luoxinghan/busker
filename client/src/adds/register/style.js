@@ -8,7 +8,7 @@ export const RegisterWrapper = styled.div`
 export const RegisterInfo = styled.div`
   width: 450px;
   margin: 60px auto;
-  padding: 50px;
+  padding: 50px; 
   background-color: #fff;
   border-radius: 4px;
   box-shadow: 0 0 8px rgba(0,0,0,.1);
