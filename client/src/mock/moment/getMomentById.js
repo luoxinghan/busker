@@ -2,7 +2,7 @@
 import Mock from 'mockjs'
 
 Mock.mock('/api/moment/detail','post',function(option){
-    /*const postValue ={"momentId":"1"};*/
+    console.log("GetMomentById", option.body);
     return Mock.mock({
         success: true,
         data: {

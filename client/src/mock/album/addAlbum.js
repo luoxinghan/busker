@@ -2,7 +2,7 @@
 import Mock from 'mockjs'
 
 Mock.mock('/api/album/add','post',function(option){
-    console.log(option.body);
+    console.log("Add Album",option.body);
     return Mock.mock({
         success: true,
         data: {

@@ -15,9 +15,13 @@ export const cleanRegister = () => ({
     type: actionTypes.CLEAN_REGISTER
 });
 
-export const register = (values) => {
+export const changeUserType = (userType) => ({
+    type: actionTypes.CHANGE_USER_TYPE,
+    userType
+});
+
+export const register = (data) => {
     return (dispatch) => {
-        let data = {"username": values.username, "password":values.password, "usertype": 1};
         axios.post("/api/register", data)
         /*axios.get("/api/register/register")*/
             .then((res)=>{

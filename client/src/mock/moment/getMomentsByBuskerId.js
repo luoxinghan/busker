@@ -47,14 +47,7 @@ Mock.mock('/api/moment/buskerId', 'post', function (option) {
                 buskerName: "BusAf",
                 address: "China, ChongQing",
                 describe: "动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容",
-                tendency: 14,
-                images: [{
-                    id: 1,
-                    imageUrl: "https://images.pexels.com/photos/417473/pexels-photo-417473.jpeg?auto=compress&cs=tinysrgb&h=650&w=940 940w, https://images.pexels.com/photos/417473/pexels-photo-417473.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260 1260w, https://images.pexels.com/photos/417473/pexels-photo-417473.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940 1880w, https://images.pexels.com/photos/417473/pexels-photo-417473.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260 2520w"
-                }, {
-                    id: 2,
-                    imageUrl: "https://images.pexels.com/photos/417473/pexels-photo-417473.jpeg?auto=compress&cs=tinysrgb&h=650&w=940 940w, https://images.pexels.com/photos/417473/pexels-photo-417473.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260 1260w, https://images.pexels.com/photos/417473/pexels-photo-417473.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940 1880w, https://images.pexels.com/photos/417473/pexels-photo-417473.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260 2520w"
-                }]
+                tendency: 14
             }]
         }
     })

@@ -36,9 +36,10 @@ class Trail extends Component{
                                         src={item.get("imgUrl")}
                                     />
                                     <TrailInfo>
-                                        <h3 className="busker-name">{item.get("trailName")}</h3>
-                                        <p className="time">{moment(item.get("time")).format("LLLL")}</p>
-                                        <p className="address">{item.get("address")} <span>{item.get("site")}</span></p>
+                                        <h1 className="participant">{item.get("participant")}</h1>
+                                        <h3 className="busker-name">By: <Link to={"/busker/detail/" + item.get("buskerId")}>{item.get("buskerName")}</Link></h3>
+                                        <p className="time">{moment(item.get("performingTime")).format("LLLL")}</p>
+                                        <p className="address">{item.get("performAddress")}</p>
                                         <Paragraph ellipsis={{ rows: 4, expandable: false }} className="des">
                                             {item.get("describe")}
                                         </Paragraph>

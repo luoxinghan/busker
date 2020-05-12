@@ -1,11 +1,11 @@
 import React, {Component} from "react";
 import {withRouter} from "react-router-dom";
 import axios from "axios";
-import {Avatar, Comment, message, Rate, Skeleton, Tooltip} from "antd";
+import {Avatar, Comment, message, Rate, Tooltip} from "antd";
 import moment from "moment";
 import SubComment from "../SubComment";
 import {CommentInputArea} from "./style";
-import {Form, Input, Button} from "antd";
+import {Input, Button} from "antd";
 
 
 class RootComment extends Component {

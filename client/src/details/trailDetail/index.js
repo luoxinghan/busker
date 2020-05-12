@@ -8,26 +8,40 @@ import {
     TrailImg,
     TrailContent,
     LikeArea,
-    ShareArea,
     TrailExtraInfo,
     BuskersList
 } from "./style";
 import {actionCreators} from "./store";
 import {createLoadingSelector} from "../../common/utils/selectors";
-import {Button, Divider, Skeleton} from "antd";
-import {WeiboShareButton, WeiboIcon,VKShareButton,VKIcon, TwitterShareButton, TwitterIcon} from "react-share";
+import {Button, Divider, message, Skeleton} from "antd";
 import moment from "moment";
 import {Title, HorizontalTitle} from "../../common/style";
+import {getCookie} from "../../common/utils/cookieUtils";
 
 class TrailDetail extends Component {
     componentDidMount() {
         const { getTrail } = this.props;
-        getTrail(this.props.match.params.id);
+        let isLogin = getCookie("isLogin");
+        if (isLogin) {//如果登录则传用户id
+            let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            getTrail(this.props.match.params.id, currentUser.id);
+        } else {
+            getTrail(this.props.match.params.id, -1);
+        }
     }
 
+    likeTrail = (trailId) => {
+        let isLogin = getCookie("isLogin");
+        if (!isLogin) {//如果登录则传用户id
+            this.props.changeTrailLike(trailId, this.props.currentUser.get("id"));
+        } else {
+            message.info("Please login first.");
+        }
+    };
+
     render() {
-        const { trail, isLoading } = this.props;
-        let buskerLink = null;
+        const { trail, isLoading, isLike } = this.props;
+       /* let buskerLink = null;
         let performList = null;
         if (typeof trail.get("buskers") !== "undefined"){
             buskerLink = trail.get("buskers").map((item) => {
@@ -48,7 +62,7 @@ class TrailDetail extends Component {
                     </div>
                 )
             })
-        }
+        }*/
         return (
             <DetailWrapper>
                 <TrailInfoArea>
@@ -56,21 +70,19 @@ class TrailDetail extends Component {
                         <TrailCard>
                             <TrailImg src={trail.get("imgUrl")}/>
                             <TrailContent>
-                                <h1 className="trail-name">{trail.get("trailName")}</h1>
-                                <p><span className="title">TIME: </span><time>{moment(trail.get("time")).format('LLLL')}</time></p>
-                                <p><span className="title">Busker: </span>{buskerLink}</p>
-                                <p><span className="title">Site: </span>{trail.get("site")}</p>
-                                <p><span className="title">Address: </span>{trail.get("address")}</p>
-                                <p><span className="title">Telephone: </span>{trail.get("telephone")}</p>
+                                <h1 className="trail-name">{trail.get("participant")}</h1>
+                                <p><span className="title">TIME: </span><time>{moment(trail.get("performingTime")).format('LLLL')}</time></p>
+                                <p><span className="title">Busker: </span><Link to={"/busker/detail/" + trail.get("buskerId")} key={trail.get("buskerId")}>{trail.get("buskerName")}</Link></p>
+                                <p><span className="title">Address: </span>{trail.get("performAddress")}</p>
                                 <p><span className="title">Likes: </span>{trail.get("likes")}</p>
                                 <LikeArea>
-                                    <Button type="primary" icon="heart">LIKE</Button>
+                                    {isLike ? <Button type="primary" icon="smile" disabled>LIKE</Button> : <Button type="primary" icon="smile" onClick={()=>this.likeTrail(trail.get("id"))}>LIKE</Button>}
                                 </LikeArea>
-                                <ShareArea>
+                                {/*<ShareArea>
                                     <TwitterShareButton url={window.location.href} title="Come to see this perform!" hashtags={["busker"]}><TwitterIcon size={30} round /></TwitterShareButton>
                                     <WeiboShareButton url={window.location.href}><WeiboIcon size={30} round /></WeiboShareButton>
                                     <VKShareButton url={window.location.href} title="Come to see this perform!"><VKIcon size={30} round/></VKShareButton>
-                                </ShareArea>
+                                </ShareArea>*/}
                             </TrailContent>
                         </TrailCard>
                     </Skeleton>
@@ -80,7 +92,12 @@ class TrailDetail extends Component {
                         <Skeleton loading={isLoading} active>
                             <HorizontalTitle><span>Buskers</span></HorizontalTitle>
                             <BuskersList>
-                                {performList}
+                                <div key={trail.get("buskerId")} className="busker-item">
+                                    <Link to={"/busker/detail/" + trail.get("buskerId")}>
+                                        <img alt={trail.get("buskerImg")} src={trail.get("buskerImg")} />
+                                        <p className="busker-name">{trail.get("buskerName")}</p>
+                                    </Link>
+                                </div>
                             </BuskersList>
                             <HorizontalTitle><span>Details</span></HorizontalTitle>
                             <div className="des">{trail.get("describe")}</div>
@@ -96,14 +113,19 @@ const loadingSelector = createLoadingSelector(['GET_TRAIL']);
 const mapStateToProps = (state) => {
     return {
         trail: state.get("trailDetail").get("trail"),
+        isLike: state.get("trailDetail").get("isLike"),
+        currentUser: state.get("login").get("currentUser"),
         isLoading: loadingSelector(state)
     }
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getTrail(trailId){
-            dispatch(actionCreators.getTrail(trailId))
+        getTrail(trailId, userId){
+            dispatch(actionCreators.getTrail(trailId, userId))
+        },
+        changeTrailLike(trailId, userId){
+            dispatch(actionCreators.likeTrail(trailId, userId))
         }
     }
 };

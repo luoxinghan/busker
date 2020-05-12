@@ -38,6 +38,12 @@ export const TrailInfo = styled.div`
   font-size: 1.8rem;
   overflow: hidden;
   display: inline-block;
+  .participant{
+    font-size: 2.4rem;
+  }
+  .busker-name{
+    font-size: 1.8rem;
+  }
   .time{
     color: #555;
     font-size: 1.4rem;

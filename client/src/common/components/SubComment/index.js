@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {withRouter} from "react-router-dom";
 import axios from "axios";
-import {Avatar, Button, Comment, Input, message, Rate, Skeleton, Tooltip} from "antd";
+import {Avatar, Button, Comment, Input, message, Skeleton, Tooltip} from "antd";
 import moment from "moment";
 import {fromJS} from "immutable";
 import {CommentInputArea} from "../RootComment/style";

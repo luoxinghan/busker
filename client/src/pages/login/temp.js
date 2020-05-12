@@ -1,13 +1,11 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
-import {Link, Redirect, withRouter} from "react-router-dom";
+import {Link, withRouter} from "react-router-dom";
 import {actionCreators} from "./store";
-import {actionCreators as registerActionCreators} from "../../adds/register/store";
 import {
-    Form, Icon, Input, Button, Checkbox, AutoComplete,
+    Form, Input, Button, Checkbox, AutoComplete,
 } from 'antd';
 import {
-    LoginWrapper,
     FormWrapper,
     CaptchaCode
 } from "./style";
@@ -266,7 +264,8 @@ class Login extends Component {
                         >
                             Sign in
                         </Button>
-                        <a onClick={this.register}>Register</a>
+                        <Link to={"/register"}>Register</Link>
+                        {/*<a onClick={this.register}>Register</a>*/}
                     </Form.Item>
                 </Form>
             </FormWrapper>

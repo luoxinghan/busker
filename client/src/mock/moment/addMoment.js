@@ -2,23 +2,7 @@
 import Mock from 'mockjs'
 
 Mock.mock('/api/moment/add','post',function(option){
-    /*const postValue ={
-        buskerId: 2,//这里是创建人的ID
-        address: "",
-        tendency: 0,
-        content: "",
-        images: [{
-            imageId: 1
-        },{
-            imageId: 2
-        }],
-        videos:[{
-            url: "tPcCWqQsFBA"
-        },{
-            url: "tPcCWqQsFBA"
-        }],
-        postTime: ""
-    };*/
+    console.log("Moment Add", option.body);
     return Mock.mock({
         success: true,
         data: {

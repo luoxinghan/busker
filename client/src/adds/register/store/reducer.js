@@ -5,7 +5,8 @@ const defaultState = fromJS({
     data: [],
     redirectTo: '', // 完成之后跳到哪里
     message: '', // 错误消息
-    isRegister: false // 是否登录
+    isRegister: false, // 是否登录,
+    userType: 3 //用户类型
 });
 
 export default (state=defaultState, action) => {
@@ -23,6 +24,10 @@ export default (state=defaultState, action) => {
         case actionTypes.CLEAN_REGISTER:
             return state.merge({
                 isRegister: false
+            });
+        case actionTypes.CHANGE_USER_TYPE:
+            return state.merge({
+                userType: action.userType
             });
         default:
             return state;

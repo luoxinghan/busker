@@ -47,8 +47,8 @@ class AlbumAdd extends Component {
                 }),
             );
         }
-
     };
+
     handleSubmit = e => {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
@@ -107,7 +107,7 @@ class AlbumAdd extends Component {
                                     rules: [{required: true, message: 'The album needs a cover art.'}]
                                 })(
                                     <Upload name="logo" action="/api/image/upload"
-                                            data={{type: 2}}
+                                            data={{type: 4}}
                                             onChange={this.handleChange}
                                             listType="picture">
                                         <Button>

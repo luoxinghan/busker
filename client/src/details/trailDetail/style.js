@@ -18,7 +18,7 @@ export const TrailCard = styled.div`
 `;
 
 export const TrailImg = styled.img`
-  width: 250px;
+  width: 200px;
 `;
 
 export const TrailContent = styled.div`

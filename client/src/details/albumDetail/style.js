@@ -44,6 +44,10 @@ export const AlbumAuthor = styled.div`
     color: white;
     border: none;
   }
+  .price{
+    font-size: 2.4rem;
+    color: #2ecc71;
+  }
 `;
 
 export const AlbumScoreCircle = styled.div`
@@ -76,6 +80,11 @@ export const AlbumTitle = styled.div`
     margin: 0;
     font-size: 1.2rem;
     font-weight: 600;
+  }
+  .sales{
+    color: #e74c3c;
+    font-size: 1.8rem;
+    margin: 5px 0;
   }
   .busker{
     color: #1a1a1a;

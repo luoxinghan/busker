@@ -14,25 +14,27 @@ import Moment from "./pages/moment";
 import Login from "./pages/login/temp";
 import Register from "./adds/register";
 import TrailAdd from "./adds/trailAdd";
-import TrailDetail from "./pages/trailDetail";
+import TrailDetail from "./details/trailDetail";
 import MomentDetail from "./details/momentDetail";
 import MomentAdd from "./adds/momentAdd";
 import BuskerDetail from "./details/buskerDetail";
 import BuskerUpdate from "./updates/buskerUpdate";
 import Feedback from "./common/feedback";
 import AboutUs from "./common/about";
-import ErrorPage from "./common/error";
 import Albums from "./pages/album";
 import AlbumDetail from "./details/albumDetail";
 import AlbumAdd from "./adds/albumAdd";
 import SponsorUs from "./pages/sponsor";
+import Personal from "./pages/personal";
 import "./mock";
 import PrivateRoute from "./router/PrivateRoute";
 
+/*
 function requireAuth(nextState, replaceState) {
     if (!document.cookie)
         replaceState('/login');
 }
+*/
 
 class App extends Component {
   render() {
@@ -61,6 +63,7 @@ class App extends Component {
                       <Route path="/feedback" exact component={Feedback}/>
                       <Route path="/aboutus" exact component={AboutUs}/>
                       <Route path="/sponsor" exact component={SponsorUs}/>
+                      <Route path="/personal/:id" exact component={Personal}/>
                       <PrivateRoute path="/manage">
                           <div>这里就是管理界面</div>
                       </PrivateRoute>

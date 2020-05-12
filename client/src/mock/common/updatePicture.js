@@ -2,7 +2,7 @@
 import Mock from 'mockjs'
 
 Mock.mock('/api/image/upload','post',function(option){
-    console.log(...option.body)
+    console.log(...option.body);
     return Mock.mock({
         success: true,
         data: {

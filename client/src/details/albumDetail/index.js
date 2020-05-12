@@ -13,34 +13,19 @@ import {
     SingleBody,
     CommentsInfo,
     CommentWrite,
-    CommentList, Single
+    CommentList
 } from "./style";
 import {actionCreators} from "./store";
 import {createLoadingSelector} from "../../common/utils/selectors";
-import {Button, Comment, Skeleton, Tooltip, Avatar, Rate, Input, Form} from "antd";
+import {Button, Comment, Skeleton, Avatar, Rate, Input, Form} from "antd";
 import moment from "moment";
 import {GetDateStr} from "../../common/utils/dateUtils";
 import {Title} from "../../common/style";
-import SubComment from "../../common/components/SubComment";
 import {getCookie} from "../../common/utils/cookieUtils";
 import AlbumSingle from "../../common/components/AlbumSingle";
 import RootComment from "../../common/components/RootComment";
 
 const { TextArea } = Input;
-
-const Editor = ({ onChange, onSubmit, submitting, value }) => (
-    <div>
-        <Form.Item>
-            <TextArea rows={2} onChange={onChange} value={value} />
-        </Form.Item>
-        <Form.Item>
-            <Rate defaultValue={5}/>
-            <Button htmlType="submit" loading={submitting} onClick={onSubmit} type="primary">
-                Add Comment
-            </Button>
-        </Form.Item>
-    </div>
-);
 
 class AlbumDetail extends Component {
     state = {
@@ -54,11 +39,11 @@ class AlbumDetail extends Component {
         this.subCommentElement = React.createRef();
     }
     componentDidMount() {
-        const { getAlbum, getAlbumComments } = this.props;
+        const { getAlbum } = this.props;
         let isLogin = getCookie("isLogin");
         if (isLogin) {//如果登录则传用户id
             let currentUser = JSON.parse(localStorage.getItem('currentUser'));
-            getAlbum(this.props.match.params.id, (JSON.parse(localStorage.getItem('currentUser')).id));
+            getAlbum(this.props.match.params.id, currentUser.id);
         } else {
             getAlbum(this.props.match.params.id, -1);
         }
@@ -108,16 +93,16 @@ class AlbumDetail extends Component {
         let result;
         switch (status) {
             case 1: result=(<Button>BUY THIS</Button>); break;
-            case 2: result=(<Button disabled>BUY THIS</Button>);break;
-            case 3: result=(<Button>BUY THIS</Button>);break;
-            case 4: result=(<Button>BUY THIS</Button>); break;
+            case 2: result=(<h3>Coming soon</h3>);break;
+            case 3: result=(<h3>Off shelf</h3>);break;
+            case 4: result=(<h3>Deleted</h3>); break;
             default: result=(<Button>BUY THIS</Button>);break;
         }
         return result;
     };
 
     render() {
-        const { album, haveAlbum, comments, singles, isLoading, currentUser, isLogged} = this.props;
+        const { album, haveAlbum, comments, singles, isLoading, currentUser} = this.props;
         let oneDayBefore = GetDateStr(-3);
         return (
             <DetailWrapper>
@@ -128,13 +113,14 @@ class AlbumDetail extends Component {
                                 <h2>{album.get("author")}</h2>
                                 <h1>{album.get("albumsName")}</h1>
                                 <p className="price">$ {album.get("price")}</p>
-                                {haveAlbum ? null : this.getAlbumBuyButton(album.get("albumStatus"))}
+                                {haveAlbum ? <h3>Thank you for buying!</h3> : this.getAlbumBuyButton(album.get("albumStatus"))}
                             </AlbumAuthor>
                             <img className="album-img" alt={album.get("imgUrl")} src={album.get("imgUrl")}/>
                             <AlbumScoreCircle><div>{album.get("score")}</div></AlbumScoreCircle>
                         </AlbumHead>
                         <AlbumBody>
                             <AlbumTitle>
+                                <p className="sales">{album.get("sales")} People Got</p>
                                 <p className="busker">BY: <Link to={"/busker/detail/" + album.get("buskerId")}>{album.get("buskerName")}</Link></p>
                                 <p className="time">{moment(album.get("publishTime")).isAfter(oneDayBefore) ? moment(album.get("publishTime"), "YYYYMMDD").fromNow() : moment(album.get("publishTime")).format('MMMM DD YYYY')}</p>
                             </AlbumTitle>

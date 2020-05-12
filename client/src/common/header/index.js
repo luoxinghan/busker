@@ -20,6 +20,41 @@ class Header extends Component {
 
     render() {
         const {isLogged, currentUser, logout} = this.props;
+        let userMenu;
+        if (currentUser.get("typeId") === 1){
+            userMenu = (
+                <Dropdown overlay={
+                    <Menu>
+                        <Menu.Item>
+                            <Link to={"/busker/detail/" + currentUser.get("id")}>Profile</Link>
+                        </Menu.Item>
+                        <Menu.Item>
+                            <span onClick={logout}>Exit</span>
+                        </Menu.Item>
+                    </Menu>
+                } placement="bottomCenter">
+                    <Avatar imgUrl={currentUser.get("imgUrl")}/>
+                </Dropdown>
+            )
+        } else if (currentUser.get("typeId") === 3) {
+            userMenu = (
+                <Dropdown overlay={
+                    <Menu>
+                        <Menu.Item>
+                            <Link to={"/busker/detail/" + currentUser.get("id")}>Profile</Link>
+                        </Menu.Item>
+                        <Menu.Item>
+                            <Link to={"/personal/" + currentUser.get("id")}>Personal</Link>
+                        </Menu.Item>
+                        <Menu.Item>
+                            <span onClick={logout}>Exit</span>
+                        </Menu.Item>
+                    </Menu>
+                } placement="bottomCenter">
+                    <Avatar imgUrl={currentUser.get("imgUrl")}/>
+                </Dropdown>
+            )
+        }
         return (
             <HeaderWrapper>
                 <HeaderInfo>
@@ -33,20 +68,7 @@ class Header extends Component {
                     </Nav>
                     <Addition>
                         {
-                            isLogged ?
-                                <Dropdown overlay={
-                                    <Menu>
-                                        <Menu.Item>
-                                            <Link to={"/busker/detail/" + currentUser.get("id")}>Profile</Link>
-                                        </Menu.Item>
-                                        <Menu.Item>
-                                            <span onClick={logout}>Exit</span>
-                                        </Menu.Item>
-                                    </Menu>
-                                } placement="bottomCenter">
-                                    <Avatar imgUrl={currentUser.get("imgUrl")}/>
-                                </Dropdown> :
-                                <Link to="/login"><Button>LOGIN</Button></Link>
+                            isLogged ? userMenu : <Link to="/login"><Button>LOGIN</Button></Link>
                         }
                     </Addition>
                 </HeaderInfo>

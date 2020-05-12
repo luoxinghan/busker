@@ -16,5 +16,11 @@ export const RegisterInfo = styled.div`
     text-align: center;
     font-size: 24px;
     color: #777;
+    .fans{
+      color: #c0392b;
+    }
+    .busker{
+      color: #3498db;
+    }
   }
 `;

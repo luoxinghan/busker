@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
 import {actionCreators} from "./store";
-import {actionCreators as updateActionCreator} from "../../updates/buskerUpdate/store";
 import {Button, Col, Row, Skeleton, Tooltip} from "antd";
 import {Link, withRouter} from "react-router-dom";
 import moment from "moment";
@@ -92,16 +91,18 @@ class BuskerDetail extends Component {
                                 typeof (trailList) == "undefined" ? "" :
                                     trailList.map((item) => {
                                         return (
-                                            <TrailItem key={item.get("id")}>
-                                                <img
-                                                    className="trail-pic"
-                                                    alt={item.get("imgUrl")}
-                                                    src={item.get("imgUrl")}/>
-                                                <h3>{item.get("buskers")}</h3>
-                                                <p><span>TIME: </span>{moment(item.get("performingTime")).fromNow()}</p>
-                                                <p><span>ADDRESS: </span>{item.get("performAddress")}</p>
-                                                <p><span>LIKES: </span>{item.get("likes")}</p>
-                                            </TrailItem>
+                                            <Link key={item.get("id")} to={"/trail/detail/" + item.get("id")}>
+                                                <TrailItem>
+                                                    <img
+                                                        className="trail-pic"
+                                                        alt={item.get("imgUrl")}
+                                                        src={item.get("imgUrl")}/>
+                                                    <h3>{item.get("participant")}</h3>
+                                                    <p><span>TIME: </span>{moment(item.get("performingTime")).fromNow()}</p>
+                                                    <p><span>ADDRESS: </span>{item.get("performAddress")}</p>
+                                                    <p><span>LIKES: </span>{item.get("likes")}</p>
+                                                </TrailItem>
+                                            </Link>
                                         )
                                     })
                             }

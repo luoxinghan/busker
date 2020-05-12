@@ -6,7 +6,7 @@ export default Mock.mock('/api/moment/moments', 'get', {
         code: 200,
         momentList: [{
             id: 1,
-            time: "2018-03-11 15:16:17",
+            time: 1586770000000,
             buskerName: "Busker1",
             address: "China, ChongQing",
             describe: "动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容动态的内容",

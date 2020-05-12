@@ -1,12 +1,11 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
-import {Carousel, Button, Row, Col} from "antd";
+import {Button, Row, Col} from "antd";
 import "antd/dist/antd.css";
 import {actionCreators} from "./store";
+import {actionCreators as registerAC} from "../../adds/register/store";
 import {
     HomeWrapper,
-    HomeCarousel,
-    HomeCarouselItem,
     HomeVideoWrapper,
     AlbumsWrapper,
     AlbumsItem,
@@ -32,8 +31,17 @@ const opts = {
 };
 
 class Home extends Component {
+    changeToRegister = (userType) => {
+        if (userType === 1) {
+            this.props.switchUserType(1);
+        }
+        if (userType === 3){
+            this.props.switchUserType(3);
+        }
+        this.props.history.push("/register");
+    };
     render() {
-        const {homeImgList, homeWebDes, homeAlbums} = this.props;
+        const {homeWebDes, homeAlbums} = this.props;
         return (
             <HomeWrapper>
                 {/*<HomeCarousel>
@@ -58,10 +66,10 @@ class Home extends Component {
                         <h1>Descover amazing street performers</h1>
                         <Row gutter={16} justify="space-around" type="flex">
                             <Col span={10}>
-                                <Button>JOIN AS A BUSKER</Button>
+                                <Button onClick={()=>{this.changeToRegister(1)}}>JOIN AS A BUSKER</Button>
                             </Col>
                             <Col span={10}>
-                                <Button>JOIN AS A FAN</Button>
+                                <Button onClick={()=>{this.changeToRegister(3)}}>JOIN AS A FAN</Button>
                             </Col>
                         </Row>
                     </div>
@@ -123,6 +131,9 @@ const mapDispatchToProps = (dispatch) => {
     return {
         getHomeData(){
             dispatch(actionCreators.getHomeData());
+        },
+        switchUserType(userType) {
+            dispatch(registerAC.changeUserType(userType));
         }
     }
 };

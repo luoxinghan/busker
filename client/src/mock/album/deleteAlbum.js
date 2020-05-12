@@ -2,7 +2,7 @@
 import Mock from 'mockjs'
 
 Mock.mock('/api/album/delete','post',function(option){
-    /*const postValue = {"albumId":1}*/
+    console.log("Delete Album", option.body);
     return Mock.mock({
         success: true,
         data: {

@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
-import {Upload, Icon, message, Radio, Form, Input, DatePicker, Button, Tooltip} from 'antd';
+import {Upload, Icon, Radio, Form, Input, DatePicker, Button, Tooltip} from 'antd';
 import ImgCrop from "antd-img-crop";
 import moment from 'moment';
 import {actionCreators} from "./store";
@@ -19,7 +19,7 @@ function getBase64(img, callback) {
     reader.readAsDataURL(img);
 }
 
-function beforeUpload(file) {
+/*function beforeUpload(file) {
     const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
     if (!isJpgOrPng) {
         message.error('You can only upload JPG/PNG file!');
@@ -29,11 +29,11 @@ function beforeUpload(file) {
         message.error('Image must smaller than 2MB!');
     }
     return isJpgOrPng && isLt2M;
-}
+}*/
 
 class BuskerUpdate extends Component {
     state = {
-        resourceId: null,
+        imgUrl: null,
         loading: false
     };
     handleSubmit = e => {
@@ -44,18 +44,19 @@ class BuskerUpdate extends Component {
             }
             // Should format date value before submit.
             let values;
-            if (this.state.resourceId){
+            if (this.state.imgUrl){
                 values = {
                     ...fieldsValue,
                     'buskerId': this.props.currentUser.get("id"),
                     'dateOfBirth': fieldsValue['dateOfBirth'].valueOf(),
-                    'resourceId': this.state.resourceId
+                    'imgUrl': this.state.imgUrl
                 };
             } else {
                 values = {
                     ...fieldsValue,
                     'buskerId': this.props.currentUser.get("id"),
                     'dateOfBirth': fieldsValue['dateOfBirth'].valueOf(),
+                    'imgUrl': this.props.busker.get("imgUrl")
                 };
             }
             this.props.updateBusker(values, this.props);
@@ -73,7 +74,7 @@ class BuskerUpdate extends Component {
                     this.setState({
                         imageUrl,
                         loading: false,
-                        resourceId: info.file.response.data.resourceId
+                        imgUrl: info.file.response.data.url
                     });
                 }
             );
@@ -107,12 +108,6 @@ class BuskerUpdate extends Component {
                 sm: {span: 16},
             },
         };
-        const uploadButton = (
-            <div>
-                <Icon type={this.state.loading ? 'loading' : 'plus'}/>
-                <div className="ant-upload-text">Upload</div>
-            </div>
-        );
         const {imageUrl} = this.state;
         const { busker, currentUser, isLogged} = this.props;
         if (!isLogged) {
@@ -137,7 +132,7 @@ class BuskerUpdate extends Component {
                                         name="avatar"
                                         listType="picture-card"
                                         className="avatar-uploader"
-                                        action="/api/image/upload"
+                                        action="/api/image/avatar"
                                         showUploadList={false}
                                         data={{type: 2}}
                                         onChange={this.handleChange}

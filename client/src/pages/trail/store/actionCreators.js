@@ -15,7 +15,7 @@ export const changePage = (perpage, current) => ({
 
 export const  getTrailInfo = (perpage) => {
     return (dispatch) => {
-        axios.get("/api/trail/trails").then((res)=>{
+        axios.get("/api/trail/trailers").then((res)=>{
             dispatch(getTrailList(res.data.data, perpage));
         }).catch((e)=>{
             console.log(e);
