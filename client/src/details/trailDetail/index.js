@@ -21,7 +21,7 @@ import {getCookie} from "../../common/utils/cookieUtils";
 class TrailDetail extends Component {
     componentDidMount() {
         const { getTrail } = this.props;
-        let isLogin = getCookie("isLogin");
+        let isLogin = getCookie("defaultTimeLost");
         if (isLogin) {//如果登录则传用户id
             let currentUser = JSON.parse(localStorage.getItem('currentUser'));
             getTrail(this.props.match.params.id, currentUser.id);
@@ -31,7 +31,7 @@ class TrailDetail extends Component {
     }
 
     likeTrail = (trailId) => {
-        let isLogin = getCookie("isLogin");
+        let isLogin = getCookie("defaultTimeLost");
         if (!isLogin) {//如果登录则传用户id
             this.props.changeTrailLike(trailId, this.props.currentUser.get("id"));
         } else {

@@ -15,7 +15,7 @@ export const createErrorMessageSelector = actions => (state) => {
     return '';
 };
 
-
+// Only return true if all actions are not loaded
 export const createLoadingSelector = actions => state =>
     actions.some(action => state.get("loading")[action]);
 

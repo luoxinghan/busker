@@ -35,6 +35,11 @@ const addAlbumComment = (comment) => ({
     comment
 });
 
+const changeHaveAlbum = (haveAlbum) => ({
+    type: actionTypes.CHANGE_HAVE_ALBUM,
+    haveAlbum
+});
+
 
 export const getAlbum = (albumId, userId) => {
     return (dispatch) => {
@@ -88,5 +93,20 @@ export const addComment = (comment, userThing) => {
                     message.error("Sorry, it cannot be added temporarily, please check the network.");
                 }
             })
+    }
+};
+
+export const buyAlbum = (data) => {
+    return (dispatch) => {
+        axios.post("/api/album/buy", data)
+            .then((res)=>{
+                const result = res.data;
+                if (result.success) {
+                    dispatch(changeHaveAlbum(result.data.haveAlbum));
+                    message.info(result.data.message);
+                }
+            }).catch((res)=>{
+            console.log(res);
+        })
     }
 };

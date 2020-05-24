@@ -28,9 +28,9 @@ export const getTrail = (trailId, userId) => {
     }
 };
 
-export const likeTrail = (trailId, userId) => {
+export const likeTrail = (trailerId, userId) => {
     return (dispatch) => {
-        axios.post("/api/trail/like", {trailId, userId})
+        axios.post("/api/trail/like", {trailerId, userId})
             .then((res)=>{
                 message.info(res.data.data.message);
                 dispatch(changeIsLike(res.data.data));

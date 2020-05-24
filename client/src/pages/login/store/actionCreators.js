@@ -13,6 +13,16 @@ export const changeLogout = () => ({
     currentUser: {}
 });
 
+export const logout = (currentUser) => {
+    return (dispatch) => {
+        axios.post("/api/logout", currentUser)
+            .then((res)=>{
+                dispatch(changeLogout());
+                localStorage.removeItem('currentUser');
+            })
+    }
+};
+
 export const login = (values, props) => {
     return (dispatch) => {
         axios.post("/api/login", values)

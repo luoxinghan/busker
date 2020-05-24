@@ -1,38 +1,45 @@
 import axios from "axios";
 import {actionTypes} from "./index";
-
-const registerSuccess = (data) => ({
-    type: actionTypes.REGISTER_SUCCESS,
-    data
-});
-
-const registerFail = (message) => ({
-    type: actionTypes.REGISTER_FAIL,
-    message
-});
-
-export const cleanRegister = () => ({
-    type: actionTypes.CLEAN_REGISTER
-});
+import {message} from "antd";
 
 export const changeUserType = (userType) => ({
     type: actionTypes.CHANGE_USER_TYPE,
     userType
 });
 
-export const register = (data) => {
+export const changeCaptcha = (captcha) => ({
+    type: actionTypes.CHANGE_CAPTCHA_NUMBER,
+    captcha
+});
+
+export const register = (data, props) => {
     return (dispatch) => {
         axios.post("/api/register", data)
         /*axios.get("/api/register/register")*/
             .then((res)=>{
                 const result = res.data.data;
-                if (result.code === 0 && res.status === 200) {
-                    dispatch(registerSuccess(result));
-                } else {
-                    dispatch(registerFail(result.message));
+                if (res.data.success) {
+                    props.history.push("/login");
                 }
+                message.info(result.message);
             }).catch((res)=>{
                 console.log(res);
+        })
+    }
+};
+
+export const getCaptcha = (email) => {
+    return (dispatch) => {
+        axios.post("/api/captcha", {email})
+            .then((res)=>{
+                const result = res.data.data;
+                if (res.data.success) {
+                    dispatch(changeCaptcha(result.captcha));
+                } else {
+                    message.warning(result.message);
+                }
+            }).catch((res)=>{
+            console.log(res);
         })
     }
 };

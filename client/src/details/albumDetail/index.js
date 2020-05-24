@@ -17,7 +17,7 @@ import {
 } from "./style";
 import {actionCreators} from "./store";
 import {createLoadingSelector} from "../../common/utils/selectors";
-import {Button, Comment, Skeleton, Avatar, Rate, Input, Form} from "antd";
+import {Button, Comment, Skeleton, Avatar, Rate, Input, Form, message} from "antd";
 import moment from "moment";
 import {GetDateStr} from "../../common/utils/dateUtils";
 import {Title} from "../../common/style";
@@ -40,7 +40,7 @@ class AlbumDetail extends Component {
     }
     componentDidMount() {
         const { getAlbum } = this.props;
-        let isLogin = getCookie("isLogin");
+        let isLogin = getCookie("defaultTimeLost");
         if (isLogin) {//如果登录则传用户id
             let currentUser = JSON.parse(localStorage.getItem('currentUser'));
             getAlbum(this.props.match.params.id, currentUser.id);
@@ -59,7 +59,7 @@ class AlbumDetail extends Component {
         });
         let comment = {
             userId: currentUser.get("id"),
-            albumId: album.get("albumsId"),
+            objectId: album.get("albumsId"),
             typeId: 4,
             content: this.state.value,
             star: this.state.rate,
@@ -89,14 +89,28 @@ class AlbumDetail extends Component {
         this.setState({rate: value})
     };
 
+    buyThisAlbum = () => {
+        const {buyAlbum, album} = this.props;
+        let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        if (!currentUser){
+            message.warning("Please login first");
+        } else {
+            let data = {
+                albumId: album.get("albumsId"),
+                userId: currentUser.id
+            };
+            buyAlbum(data);
+        }
+    };
+
     getAlbumBuyButton = status => {
         let result;
         switch (status) {
-            case 1: result=(<Button>BUY THIS</Button>); break;
+            case 1: result=(<Button onClick={this.buyThisAlbum}>BUY THIS</Button>); break;
             case 2: result=(<h3>Coming soon</h3>);break;
             case 3: result=(<h3>Off shelf</h3>);break;
             case 4: result=(<h3>Deleted</h3>); break;
-            default: result=(<Button>BUY THIS</Button>);break;
+            default: result=(<Button onClick={this.buyThisAlbum}>BUY THIS</Button>);break;
         }
         return result;
     };
@@ -200,6 +214,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         addComment(comment, userThing){
             dispatch(actionCreators.addComment(comment, userThing));
+        },
+        buyAlbum(data){
+            dispatch(actionCreators.buyAlbum(data));
         }
     }
 };

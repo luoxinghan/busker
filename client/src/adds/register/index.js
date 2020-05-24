@@ -1,11 +1,11 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
 import {actionCreators} from "./store";
-import {Redirect} from "react-router-dom";
+import {withRouter} from "react-router-dom";
 import {
     Form,
     Input,
-    Button, Alert, Row, Col, Tabs
+    Button, Alert, Row, Col, Tabs, message
 } from 'antd';
 import {
     RegisterWrapper,
@@ -33,9 +33,16 @@ class RegistrationForm extends Component {
         this.props.form.validateFieldsAndScroll((err, values) => {
             if (err) {
                 return;
-            } else{
-                console.log(values);
-                /*this.props.register(values);*/
+            } else {
+                if (values.captcha !== this.props.captcha) {
+                    message.error("Captcha Incorrect!");
+                    return;
+                } else {
+                    delete values.captcha;
+                    delete values.confirm;
+                    values.usertype = this.props.userType;
+                    this.props.register(values, this.props);
+                }
             }
         });
     };
@@ -64,9 +71,14 @@ class RegistrationForm extends Component {
 
     changeUserType = (type) => {
         switch (type) {
-            case "1": this.props.switchUserType(3); break;
-            case "3": this.props.switchUserType(1); break;
-            default: break;
+            case "1":
+                this.props.switchUserType(3);
+                break;
+            case "3":
+                this.props.switchUserType(1);
+                break;
+            default:
+                break;
         }
     };
 
@@ -89,159 +101,154 @@ class RegistrationForm extends Component {
     handleClick = () => {
         const {liked} = this.state;
         console.log("some", liked);
+        let email = (this.props.form.getFieldValue('username'));
         if (!liked) {
             return;
+        } else {
+            this.props.sendCaptcha(email);
         }
         this.countDown();
     };
 
     render() {
         const {getFieldDecorator} = this.props.form;
-        const {message, redirectTo, isRegister, userType} = this.props;
-        if (!isRegister) {
-            return (
-                <RegisterWrapper>
-                    <RegisterInfo>
-                        <Tabs onChange={this.changeUserType} defaultActiveKey={userType + ""}>
-                            <TabPane tab={<span>Fans</span>} key="3">
-                                <h1>Sign up as <span className="fans">Fans</span></h1>
-                                {message !== "" ? <Alert message={message} type="error" showIcon closable/> : null}
-                                <Form onSubmit={this.handleSubmit}>
-                                    <Form.Item>
-                                        {getFieldDecorator('username', {
-                                            rules: [
-                                                {
+        const {userType} = this.props;
+        return (
+            <RegisterWrapper>
+                <RegisterInfo>
+                    <Tabs onChange={this.changeUserType} defaultActiveKey={userType + ""}>
+                        <TabPane tab={<span>Fans</span>} key="3">
+                            <h1>Sign up as <span className="fans">Fans</span></h1>
+                            <Form onSubmit={this.handleSubmit}>
+                                <Form.Item>
+                                    {getFieldDecorator('username', {
+                                        rules: [
+                                            {
+                                                required: true,
+                                                message: 'Please input your email!',
+                                            },
+                                        ],
+                                    })(<Input placeholder="Email"/>)}
+                                </Form.Item>
+                                <Form.Item extra="We must make sure that your are a human.">
+                                    <Row gutter={16}>
+                                        <Col span={8}>
+                                            {getFieldDecorator('captcha', {
+                                                rules: [{
                                                     required: true,
-                                                    message: 'Please input your email!',
-                                                },
-                                            ],
-                                        })(<Input placeholder="Email"/>)}
-                                    </Form.Item>
-                                    <Form.Item extra="We must make sure that your are a human.">
-                                        <Row gutter={16}>
-                                            <Col span={8}>
-                                                {getFieldDecorator('captcha', {
-                                                    rules: [{
-                                                        required: true,
-                                                        message: 'Please input the captcha you got!'
-                                                    }],
-                                                })(<Input placeholder="Captcha"/>)}
-                                            </Col>
-                                            <Col span={16}>
-                                                {this.state.liked ?
-                                                    <Button onClick={this.handleClick}>Get captcha</Button> :
-                                                    <Button disabled>{this.state.count}s Resend Captcha</Button>}
-                                            </Col>
-                                        </Row>
-                                    </Form.Item>
-                                    <Form.Item>
-                                        {getFieldDecorator('password', {
-                                            rules: [
-                                                {
+                                                    message: 'Please input the captcha you got!'
+                                                }],
+                                            })(<Input placeholder="Captcha"/>)}
+                                        </Col>
+                                        <Col span={16}>
+                                            {this.state.liked ?
+                                                <Button onClick={this.handleClick}>Get captcha</Button> :
+                                                <Button disabled>{this.state.count}s Resend Captcha</Button>}
+                                        </Col>
+                                    </Row>
+                                </Form.Item>
+                                <Form.Item>
+                                    {getFieldDecorator('password', {
+                                        rules: [
+                                            {
+                                                required: true,
+                                                message: 'Please input your password!',
+                                            },
+                                            {
+                                                validator: this.validateToNextPassword,
+                                            },
+                                        ],
+                                    })(<Input.Password allowClear placeholder="Password"/>)}
+                                </Form.Item>
+                                <Form.Item>
+                                    {getFieldDecorator('confirm', {
+                                        rules: [
+                                            {
+                                                required: true,
+                                                message: 'Please confirm your password!',
+                                            },
+                                            {
+                                                validator: this.compareToFirstPassword,
+                                            },
+                                        ],
+                                    })(<Input.Password allowClear onBlur={this.handleConfirmBlur}
+                                                       placeholder="Confirm password"/>)}
+                                </Form.Item>
+                                <Form.Item>
+                                    <Button type="primary" htmlType="submit">
+                                        Sign up
+                                    </Button>
+                                </Form.Item>
+                            </Form>
+                        </TabPane>
+                        <TabPane tab={<span onClick={() => this.changeUserType(1)}>Busker</span>} key="1">
+                            <h1>Sign up as <span className="busker">Busker</span></h1>
+                            <Form onSubmit={this.handleSubmit}>
+                                <Form.Item>
+                                    {getFieldDecorator('username', {
+                                        rules: [
+                                            {
+                                                required: true,
+                                                message: 'Please input your email!',
+                                            },
+                                        ],
+                                    })(<Input placeholder="Email"/>)}
+                                </Form.Item>
+                                <Form.Item extra="We must make sure that your are a human.">
+                                    <Row gutter={16}>
+                                        <Col span={8}>
+                                            {getFieldDecorator('captcha', {
+                                                rules: [{
                                                     required: true,
-                                                    message: 'Please input your password!',
-                                                },
-                                                {
-                                                    validator: this.validateToNextPassword,
-                                                },
-                                            ],
-                                        })(<Input.Password allowClear placeholder="Password"/>)}
-                                    </Form.Item>
-                                    <Form.Item>
-                                        {getFieldDecorator('confirm', {
-                                            rules: [
-                                                {
-                                                    required: true,
-                                                    message: 'Please confirm your password!',
-                                                },
-                                                {
-                                                    validator: this.compareToFirstPassword,
-                                                },
-                                            ],
-                                        })(<Input.Password allowClear onBlur={this.handleConfirmBlur}
-                                                           placeholder="Confirm password"/>)}
-                                    </Form.Item>
-                                    <Form.Item>
-                                        <Button type="primary" htmlType="submit">
-                                            Sign in
-                                        </Button>
-                                    </Form.Item>
-                                </Form>
-                            </TabPane>
-                            <TabPane tab={<span onClick={()=>this.changeUserType(1)}>Busker</span>} key="1">
-                                <h1>Sign up as <span className="busker">Busker</span></h1>
-                                {message !== "" ? <Alert message={message} type="error" showIcon closable/> : null}
-                                <Form onSubmit={this.handleSubmit}>
-                                    <Form.Item>
-                                        {getFieldDecorator('username', {
-                                            rules: [
-                                                {
-                                                    required: true,
-                                                    message: 'Please input your email!',
-                                                },
-                                            ],
-                                        })(<Input placeholder="Email"/>)}
-                                    </Form.Item>
-                                    <Form.Item extra="We must make sure that your are a human.">
-                                        <Row gutter={16}>
-                                            <Col span={8}>
-                                                {getFieldDecorator('captcha', {
-                                                    rules: [{
-                                                        required: true,
-                                                        message: 'Please input the captcha you got!'
-                                                    }],
-                                                })(<Input placeholder="Captcha"/>)}
-                                            </Col>
-                                            <Col span={16}>
-                                                {this.state.liked ?
-                                                    <Button onClick={this.handleClick}>Get captcha</Button> :
-                                                    <Button disabled>{this.state.count}s Resend Captcha</Button>}
-                                            </Col>
-                                        </Row>
-                                    </Form.Item>
-                                    <Form.Item>
-                                        {getFieldDecorator('password', {
-                                            rules: [
-                                                {
-                                                    required: true,
-                                                    message: 'Please input your password!',
-                                                },
-                                                {
-                                                    validator: this.validateToNextPassword,
-                                                },
-                                            ],
-                                        })(<Input.Password allowClear placeholder="Password"/>)}
-                                    </Form.Item>
-                                    <Form.Item>
-                                        {getFieldDecorator('confirm', {
-                                            rules: [
-                                                {
-                                                    required: true,
-                                                    message: 'Please confirm your password!',
-                                                },
-                                                {
-                                                    validator: this.compareToFirstPassword,
-                                                },
-                                            ],
-                                        })(<Input.Password allowClear onBlur={this.handleConfirmBlur}
-                                                           placeholder="Confirm password"/>)}
-                                    </Form.Item>
-                                    <Form.Item>
-                                        <Button type="primary" htmlType="submit">
-                                            Sign in
-                                        </Button>
-                                    </Form.Item>
-                                </Form>
-                            </TabPane>
-                        </Tabs>
-                    </RegisterInfo>
-                </RegisterWrapper>
-            );
-        } else {
-            return (
-                <Redirect to={redirectTo}/>
-            )
-        }
+                                                    message: 'Please input the captcha you got!'
+                                                }],
+                                            })(<Input placeholder="Captcha"/>)}
+                                        </Col>
+                                        <Col span={16}>
+                                            {this.state.liked ?
+                                                <Button onClick={this.handleClick}>Get captcha</Button> :
+                                                <Button disabled>{this.state.count}s Resend Captcha</Button>}
+                                        </Col>
+                                    </Row>
+                                </Form.Item>
+                                <Form.Item>
+                                    {getFieldDecorator('password', {
+                                        rules: [
+                                            {
+                                                required: true,
+                                                message: 'Please input your password!',
+                                            },
+                                            {
+                                                validator: this.validateToNextPassword,
+                                            },
+                                        ],
+                                    })(<Input.Password allowClear placeholder="Password"/>)}
+                                </Form.Item>
+                                <Form.Item>
+                                    {getFieldDecorator('confirm', {
+                                        rules: [
+                                            {
+                                                required: true,
+                                                message: 'Please confirm your password!',
+                                            },
+                                            {
+                                                validator: this.compareToFirstPassword,
+                                            },
+                                        ],
+                                    })(<Input.Password allowClear onBlur={this.handleConfirmBlur}
+                                                       placeholder="Confirm password"/>)}
+                                </Form.Item>
+                                <Form.Item>
+                                    <Button type="primary" htmlType="submit">
+                                        Sign up
+                                    </Button>
+                                </Form.Item>
+                            </Form>
+                        </TabPane>
+                    </Tabs>
+                </RegisterInfo>
+            </RegisterWrapper>
+        );
     }
 }
 
@@ -249,23 +256,23 @@ const WrappedRegistrationForm = Form.create({name: 'register'})(RegistrationForm
 
 const mapStateToProps = (state) => {
     return {
-        message: state.get("register").get("message"),
-        redirectTo: state.get("register").get("redirectTo"),
-        data: state.get("register").get("data"),
-        isRegister: state.get("register").get("isRegister"),
-        userType: state.get("register").get("userType")
+        userType: state.get("register").get("userType"),
+        captcha: state.get("register").get("captcha")
     }
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        register(data) {
-            dispatch(actionCreators.register(data));
+        register(data, props) {
+            dispatch(actionCreators.register(data, props));
         },
         switchUserType(userType) {
             dispatch(actionCreators.changeUserType(userType));
+        },
+        sendCaptcha(email) {
+            dispatch(actionCreators.getCaptcha(email))
         }
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(WrappedRegistrationForm);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(WrappedRegistrationForm));

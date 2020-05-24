@@ -30,6 +30,10 @@ export default (state=defaultState, action) => {
             return state.merge({
                 comments: fromJS(state.get("comments").toJS().concat(comment))
             });
+        case actionTypes.CHANGE_HAVE_ALBUM:
+            return state.merge({
+                haveAlbum: action.haveAlbum
+            });
         default:
             return state;
     }

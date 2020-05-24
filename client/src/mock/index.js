@@ -5,6 +5,7 @@ import * as LikeTrail from "./trail/LikeTrail";
 import * as addTrail from "./trail/addTrail";
 import * as deleteTrail from "./trail/deleteTrail";
 
+import * as buyAlbum from "./album/buyAlbum";
 import * as getAlbums from "./album/getAlbums";
 import * as getAlbumsById from "./album/getAlbumById";
 import * as getAlbumsComment from "./album/getAlbumComment";
@@ -36,14 +37,21 @@ import * as addSingle from "./single/addSingle";
 import * as homepage from "./home/homepage";
 
 import * as login from "./user/login";
+import * as logout from "./user/logout";
+import * as register from "./user/register";
 
 import * as updatePicture from "./common/updatePicture";
 import * as updateUserAvatar from "./common/updateUserAvatar";
+import * as getCaptcha from "./common/getCaptcha";
 
 export {
     login,
+    logout,
+    register,
 
     homepage,
+
+    buyAlbum,
     getAlbums,
     getAlbumsById,
     getAlbumsComment,
@@ -81,4 +89,5 @@ export {
 
     updatePicture,
     updateUserAvatar,
+    getCaptcha,
 };

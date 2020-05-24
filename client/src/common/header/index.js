@@ -8,13 +8,14 @@ import {getCookie} from "../utils/cookieUtils";
 
 class Header extends Component {
     componentDidMount() {
-        let isLogin = getCookie("isLogin");
-        if (!isLogin){
+        let isLogin = getCookie("defaultTimeLost");
+        if (isLogin){
             let currentUser  = JSON.parse(localStorage.getItem('currentUser'));
             this.props.changeCurrentUser(currentUser);
             console.log("Header输出当前用户:",currentUser);
         } else {
 
+            console.log("未登录。");
         }
     }
 
@@ -29,7 +30,7 @@ class Header extends Component {
                             <Link to={"/busker/detail/" + currentUser.get("id")}>Profile</Link>
                         </Menu.Item>
                         <Menu.Item>
-                            <span onClick={logout}>Exit</span>
+                            <span onClick={()=>logout(currentUser)}>Exit</span>
                         </Menu.Item>
                     </Menu>
                 } placement="bottomCenter">
@@ -47,13 +48,15 @@ class Header extends Component {
                             <Link to={"/personal/" + currentUser.get("id")}>Personal</Link>
                         </Menu.Item>
                         <Menu.Item>
-                            <span onClick={logout}>Exit</span>
+                            <span onClick={()=>logout(currentUser)}>Exit</span>
                         </Menu.Item>
                     </Menu>
                 } placement="bottomCenter">
                     <Avatar imgUrl={currentUser.get("imgUrl")}/>
                 </Dropdown>
             )
+        } else {
+            userMenu = (<div>Sorry</div>)
         }
         return (
             <HeaderWrapper>
@@ -87,8 +90,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        logout(){
-            dispatch(loginActionCreators.changeLogout());
+        logout(currentUser){
+            dispatch(loginActionCreators.logout(currentUser));
         },
         changeCurrentUser(currentUser){
             dispatch(loginActionCreators.changeLogin(currentUser));
