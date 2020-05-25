@@ -22,12 +22,12 @@ class Header extends Component {
     render() {
         const {isLogged, currentUser, logout} = this.props;
         let userMenu;
-        if (currentUser.get("typeId") === 3){
+        if (currentUser.get("typeId") === 3 || currentUser.get("typeId") === 2){
             userMenu = (
                 <Dropdown overlay={
                     <Menu>
                         <Menu.Item>
-                            <Link to={"/busker/detail/" + currentUser.get("id")}>Profile</Link>
+                            <Link to={"/user/detail/" + currentUser.get("id")}>Profile</Link>
                         </Menu.Item>
                         <Menu.Item>
                             <span onClick={()=>logout(currentUser)}>Exit</span>

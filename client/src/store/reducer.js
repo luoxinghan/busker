@@ -8,8 +8,10 @@ import { reducer as momentReducer } from "../pages/moment/store";
 import { reducer as loginReducer } from "../pages/login/store";
 import { reducer as momentDetailReducer } from "../details/momentDetail/store";
 import { reducer as buskerDetailReducer } from "../details/buskerDetail/store";
+import { reducer as userDetailReducer } from "../details/userDetail/store";
 import { reducer as registerReducer } from "../adds/register/store";
 import { reducer as buskerUpdateReducer } from "../updates/buskerUpdate/store";
+import { reducer as userUpdateReducer } from "../updates/userUpdate/store";
 import { reducer as albumReducer } from "../pages/album/store";
 import { reducer as albumDetailReducer } from "../details/albumDetail/store";
 import { reducer as personalReducer } from "../pages/personal/store";
@@ -24,6 +26,7 @@ const reducer = combineReducers({
     home: homeReducer,
     busker: buskerReducer,
     buskerDetail: buskerDetailReducer,
+    userDetail: userDetailReducer,
     trail: trailReducer,
     trailDetail: trailDetailReducer,
     moment: momentReducer,
@@ -31,6 +34,7 @@ const reducer = combineReducers({
     login: loginReducer,
     register: registerReducer,
     buskerUpdate: buskerUpdateReducer,
+    userUpdate: userUpdateReducer,
     album: albumReducer,
     albumDetail: albumDetailReducer,
     personal: personalReducer,

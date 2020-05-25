@@ -12,7 +12,7 @@ Mock.mock('/api/login','post',function(option){
             currentUser: {
                 id: 4,
                 username: "aaaa@gmail.com",
-                typeId: 1,
+                typeId: 3,
                 imgUrl: "https://avatars1.githubusercontent.com/u/30335361?s=460&v=4"
             }
         }

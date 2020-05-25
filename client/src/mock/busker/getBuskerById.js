@@ -11,7 +11,7 @@ Mock.mock('/api/busker/detail', 'post', function (option) {
                 imgUrl: "https://avatars1.githubusercontent.com/u/30335361?s=460&v=4",
                 buskerName: "ColdPlay",
                 sex: 1,
-                age: 19,
+                age: 899251200,
                 instrument: "Guitar",
                 introduce: "nice man",
                 recentPerform: 4,

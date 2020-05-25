@@ -72,7 +72,8 @@ class BuskerDetail extends Component {
                             src={busker.get("imgUrl")}/>
                         <ProfileInfo>
                             <h1 className="name">{busker.get("buskerName")}</h1>
-                            <p>{busker.get("age")} Year Old {busker.get("sex") === 1 ? "Male" : "Female"}</p>
+
+                            <p>{moment().diff(busker.get("age"), "years")} Year Old {busker.get("sex") === 1 ? "Male" : "Female"}</p>
                             <p><span>INSTRUMENT: </span>{busker.get("instrument")}</p>
                             <p><span>INTRODUCE: </span>{busker.get("introduce")}</p>
                             <p><span>HOT POINT: </span>{busker.get("tendencyAllHot")}</p>

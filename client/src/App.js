@@ -19,6 +19,8 @@ import MomentDetail from "./details/momentDetail";
 import MomentAdd from "./adds/momentAdd";
 import BuskerDetail from "./details/buskerDetail";
 import BuskerUpdate from "./updates/buskerUpdate";
+import UserDetail from "./details/userDetail";
+import UserUpdate from "./updates/userUpdate";
 import Feedback from "./common/feedback";
 import AboutUs from "./common/about";
 import Albums from "./pages/album";
@@ -49,6 +51,8 @@ class App extends Component {
                       <Route path="/busker" exact component={Busker}/>
                       <Route path='/busker/detail/:id' exact component={BuskerDetail}/>
                       <Route path="/busker/update/:id" exact component={BuskerUpdate}/>
+                      <Route path='/user/detail/:id' exact component={UserDetail}/>
+                      <Route path="/user/update/:id" exact component={UserUpdate}/>
                       <Route path="/trail" exact component={Trail}/>
                       <Route path="/trail/add" exact component={TrailAdd}/>
                       <Route path="/trail/detail/:id" exact component={TrailDetail}/>

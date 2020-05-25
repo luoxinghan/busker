@@ -39,6 +39,8 @@ import * as homepage from "./home/homepage";
 import * as login from "./user/login";
 import * as logout from "./user/logout";
 import * as register from "./user/register";
+import * as getUserById from "./user/getUserById";
+import * as updateUser from "./user/updateUser";
 
 import * as updatePicture from "./common/updatePicture";
 import * as updateUserAvatar from "./common/updateUserAvatar";
@@ -49,6 +51,8 @@ export {
     login,
     logout,
     register,
+    getUserById,
+    updateUser,
 
     homepage,
 

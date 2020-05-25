@@ -74,10 +74,10 @@ class RegistrationForm extends Component {
     changeUserType = (type) => {
         switch (type) {
             case "1":
-                this.props.switchUserType(3);
+                this.props.switchUserType(1);
                 break;
             case "3":
-                this.props.switchUserType(1);
+                this.props.switchUserType(3);
                 break;
             default:
                 break;
@@ -192,7 +192,7 @@ class RegistrationForm extends Component {
                                 </Form.Item>
                             </Form>
                         </TabPane>
-                        <TabPane tab={<span onClick={() => this.changeUserType(1)}>Busker</span>} key="1">
+                        <TabPane tab={<span>Busker</span>} key="1">
                             <h1>Sign up as <span className="busker">Busker</span></h1>
                             <Form onSubmit={this.handleSubmit}>
                                 <Form.Item>
