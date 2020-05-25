@@ -114,7 +114,7 @@ const CollectionCreateForm = Form.create({name: 'form_in_modal'})(
                                 valuePropName: 'fileList',
                                 getValueFromEvent: this.normFile,
                             })(
-                                <Upload name="music" action="/api/image/upload" data={{type: 2}}
+                                <Upload name="music" action="/api/audioUpload" data={{type: 8}}
                                         onChange={this.handleChange}>
                                     <Button>
                                         <Icon type="upload"/> Upload

@@ -22,7 +22,7 @@ class Header extends Component {
     render() {
         const {isLogged, currentUser, logout} = this.props;
         let userMenu;
-        if (currentUser.get("typeId") === 1){
+        if (currentUser.get("typeId") === 3){
             userMenu = (
                 <Dropdown overlay={
                     <Menu>
@@ -37,7 +37,7 @@ class Header extends Component {
                     <Avatar imgUrl={currentUser.get("imgUrl")}/>
                 </Dropdown>
             )
-        } else if (currentUser.get("typeId") === 3) {
+        } else if (currentUser.get("typeId") === 1) {
             userMenu = (
                 <Dropdown overlay={
                     <Menu>

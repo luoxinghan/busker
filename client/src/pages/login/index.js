@@ -4,7 +4,7 @@ import {Link, Redirect} from "react-router-dom";
 import {actionCreators} from "./store";
 import {actionCreators as registerActionCreators} from "../../adds/register/store";
 import {
-    Form, Icon, Input, Button, Checkbox,
+    Form, Icon, Input, Button, Checkbox, Radio,
 } from 'antd';
 import {
     LoginWrapper,
@@ -48,6 +48,17 @@ class Login extends Component{
                                 })(
                                     <Input prefix={<Icon type="lock" style={{color: 'rgba(0,0,0,.25)'}}/>}
                                            type="password" placeholder="Password"/>
+                                )}
+                            </Form.Item>
+                            <Form.Item>
+                                {getFieldDecorator('usertype', {
+                                    rules: [{required: true, message: 'Please select your user type!'}],
+                                })(
+                                    <Radio.Group defaultValue="3">
+                                        <Radio value="3">Register</Radio>
+                                        <Radio value="1">Busker</Radio>
+                                        <Radio value="2">Admin</Radio>
+                                    </Radio.Group>,
                                 )}
                             </Form.Item>
                             <Form.Item>

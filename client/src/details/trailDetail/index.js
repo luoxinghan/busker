@@ -32,7 +32,7 @@ class TrailDetail extends Component {
 
     likeTrail = (trailId) => {
         let isLogin = getCookie("defaultTimeLost");
-        if (!isLogin) {//如果登录则传用户id
+        if (isLogin) {//如果登录则传用户id
             this.props.changeTrailLike(trailId, this.props.currentUser.get("id"));
         } else {
             message.info("Please login first.");

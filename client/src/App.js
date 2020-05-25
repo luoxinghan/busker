@@ -26,7 +26,7 @@ import AlbumDetail from "./details/albumDetail";
 import AlbumAdd from "./adds/albumAdd";
 import SponsorUs from "./pages/sponsor";
 import Personal from "./pages/personal";
-import "./mock";
+/*import "./mock";*/
 import PrivateRoute from "./router/PrivateRoute";
 
 /*

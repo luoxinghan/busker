@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import {Link, withRouter} from "react-router-dom";
 import {actionCreators} from "./store";
 import {
-    Form, Input, Button, Checkbox, AutoComplete,
+    Form, Input, Button, Checkbox, AutoComplete, Radio,
 } from 'antd';
 import {
     FormWrapper,
@@ -39,7 +39,7 @@ class Login extends Component {
 
     handleSubmit = e => {
         e.preventDefault();
-        this.drawPic();
+
         this.props.form.validateFields((err, values) => {
             if (!err && this.state.showError !== true) {
                 //登录接口
@@ -49,9 +49,8 @@ class Login extends Component {
                 delete values.remember;
                 delete values.sendcode;
                 values.password = md5(values.password);
-                values.usertype = 1;
                 login(values, this.props);
-
+                this.drawPic();
             }
         });
         this.props.form.setFieldsValue({
@@ -247,6 +246,17 @@ class Login extends Component {
                         {
                             this.state.showError ? "Please enter correct check code!" : null
                         }
+                    </Form.Item>
+                    <Form.Item>
+                        {getFieldDecorator('usertype', {
+                            rules: [{required: true, message: 'Please select your user type!'}],
+                        })(
+                            <Radio.Group defaultValue="3">
+                                <Radio value={3}>Register</Radio>
+                                <Radio value={1}>Busker</Radio>
+                                <Radio value={2}>Admin</Radio>
+                            </Radio.Group>,
+                        )}
                     </Form.Item>
                     <Form.Item className={this.state.showError ? 'styles.inputBottom' : ''}>
                         {getFieldDecorator('remember', {

@@ -43,6 +43,7 @@ import * as register from "./user/register";
 import * as updatePicture from "./common/updatePicture";
 import * as updateUserAvatar from "./common/updateUserAvatar";
 import * as getCaptcha from "./common/getCaptcha";
+import * as uploadAudio from "./common/uploadAudio";
 
 export {
     login,
@@ -90,4 +91,5 @@ export {
     updatePicture,
     updateUserAvatar,
     getCaptcha,
+    uploadAudio,
 };

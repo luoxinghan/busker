@@ -1,5 +1,6 @@
 import {actionTypes} from "./index";
 import axios from "axios";
+import {message} from "antd";
 
 export const changeLogin = (currentUser) => ({
     type: actionTypes.CHANGE_LOGIN,
@@ -15,7 +16,7 @@ export const changeLogout = () => ({
 
 export const logout = (currentUser) => {
     return (dispatch) => {
-        axios.post("/api/logout", currentUser)
+        axios.post("/api/login/logout", currentUser)
             .then((res)=>{
                 dispatch(changeLogout());
                 localStorage.removeItem('currentUser');
@@ -35,6 +36,7 @@ export const login = (values, props) => {
                 } else {
                     alert('登录失败！');
                 }
+                message.info(result.message);
             })
     }
 };

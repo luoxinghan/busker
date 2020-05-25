@@ -10,7 +10,7 @@ const getHomeImgAction = (result) => ({
 
 export const getHomeData = () => {
     return (dispatch) => {
-        axios.get("/api/homepage")
+        axios.get("/api/homepage/home")
             .then((res)=>{
                 dispatch(getHomeImgAction(res.data.data));
             }).catch(()=>{
