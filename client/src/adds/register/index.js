@@ -5,12 +5,13 @@ import {withRouter} from "react-router-dom";
 import {
     Form,
     Input,
-    Button, Alert, Row, Col, Tabs, message
+    Button, Alert, Row, Col, Tabs, message, AutoComplete
 } from 'antd';
 import {
     RegisterWrapper,
     RegisterInfo
 } from "./style";
+import md5 from "md5";
 
 const {TabPane} = Tabs;
 
@@ -40,6 +41,7 @@ class RegistrationForm extends Component {
                 } else {
                     delete values.captcha;
                     delete values.confirm;
+                    values.password = md5(values.password);
                     values.usertype = this.props.userType;
                     this.props.register(values, this.props);
                 }
@@ -110,6 +112,15 @@ class RegistrationForm extends Component {
         this.countDown();
     };
 
+    handleEmailChange = value => {
+        this.setState({
+            dataSource:
+                !value || value.indexOf('@') >= 0
+                    ? []
+                    : [`${value}@gmail.com`, `${value}@163.com`, `${value}@qq.com`],
+        });
+    };
+
     render() {
         const {getFieldDecorator} = this.props.form;
         const {userType} = this.props;
@@ -122,13 +133,16 @@ class RegistrationForm extends Component {
                             <Form onSubmit={this.handleSubmit}>
                                 <Form.Item>
                                     {getFieldDecorator('username', {
-                                        rules: [
-                                            {
-                                                required: true,
-                                                message: 'Please input your email!',
-                                            },
-                                        ],
-                                    })(<Input placeholder="Email"/>)}
+                                        rules: [{required: true, message: 'Please enter email!'}, {
+                                            pattern: /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/,
+                                            message: 'E-mail format is incorrect!'
+                                        }],
+                                    })(<AutoComplete
+                                        dataSource={this.state.dataSource}
+                                        size="large"
+                                        placeholder="Email"
+                                        onChange={this.handleEmailChange}
+                                    />)}
                                 </Form.Item>
                                 <Form.Item extra="We must make sure that your are a human.">
                                     <Row gutter={16}>
@@ -149,15 +163,12 @@ class RegistrationForm extends Component {
                                 </Form.Item>
                                 <Form.Item>
                                     {getFieldDecorator('password', {
-                                        rules: [
-                                            {
-                                                required: true,
-                                                message: 'Please input your password!',
-                                            },
-                                            {
-                                                validator: this.validateToNextPassword,
-                                            },
-                                        ],
+                                        rules: [{required: true, message: 'Please enter password!'}, {
+                                            pattern: /^.{6,}$/,
+                                            message: 'The password must not be less than 6 digits.'
+                                        }, {
+                                            validator: this.validateToNextPassword,
+                                        }],
                                     })(<Input.Password allowClear placeholder="Password"/>)}
                                 </Form.Item>
                                 <Form.Item>
@@ -186,13 +197,16 @@ class RegistrationForm extends Component {
                             <Form onSubmit={this.handleSubmit}>
                                 <Form.Item>
                                     {getFieldDecorator('username', {
-                                        rules: [
-                                            {
-                                                required: true,
-                                                message: 'Please input your email!',
-                                            },
-                                        ],
-                                    })(<Input placeholder="Email"/>)}
+                                        rules: [{required: true, message: 'Please enter email!'}, {
+                                            pattern: /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/,
+                                            message: 'E-mail format is incorrect!'
+                                        }],
+                                    })(<AutoComplete
+                                        dataSource={this.state.dataSource}
+                                        size="large"
+                                        placeholder="Email"
+                                        onChange={this.handleEmailChange}
+                                    />)}
                                 </Form.Item>
                                 <Form.Item extra="We must make sure that your are a human.">
                                     <Row gutter={16}>
@@ -213,15 +227,12 @@ class RegistrationForm extends Component {
                                 </Form.Item>
                                 <Form.Item>
                                     {getFieldDecorator('password', {
-                                        rules: [
-                                            {
-                                                required: true,
-                                                message: 'Please input your password!',
-                                            },
-                                            {
-                                                validator: this.validateToNextPassword,
-                                            },
-                                        ],
+                                        rules: [{required: true, message: 'Please enter password!'}, {
+                                            pattern: /^.{6,}$/,
+                                            message: 'The password must not be less than 6 digits.'
+                                        }, {
+                                            validator: this.validateToNextPassword,
+                                            }],
                                     })(<Input.Password allowClear placeholder="Password"/>)}
                                 </Form.Item>
                                 <Form.Item>

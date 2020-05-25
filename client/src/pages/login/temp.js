@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import {Link, withRouter} from "react-router-dom";
 import {actionCreators} from "./store";
 import {
-    Form, Input, Button, Checkbox, AutoComplete, Radio,
+    Form, Input, Button, Checkbox, AutoComplete, Radio, message,
 } from 'antd';
 import {
     FormWrapper,
@@ -44,20 +44,24 @@ class Login extends Component {
             if (!err && this.state.showError !== true) {
                 //登录接口
                 const {login} = this.props;
+                if(values.sendcode.toLowerCase() !== this.state.code.toLowerCase()){
+                    message.warning("Verification code error!");
+                } else {
+                    values.tenDaysChecked = values.remember;
+                    delete values.remember;
+                    delete values.sendcode;
+                    values.password = md5(values.password);
 
-                values.tenDaysChecked = values.remember;
-                delete values.remember;
-                delete values.sendcode;
-                values.password = md5(values.password);
-                login(values, this.props);
-                this.drawPic();
+                    login(values, this.props);
+                    this.drawPic();
+                    this.props.form.setFieldsValue({
+                        sendCode: ''
+                    });
+                }
+                this.setState({
+                    showError: false
+                });
             }
-        });
-        this.props.form.setFieldsValue({
-            sendCode: ''
-        });
-        this.setState({
-            showError: false
         });
     };
 
@@ -251,7 +255,7 @@ class Login extends Component {
                         {getFieldDecorator('usertype', {
                             rules: [{required: true, message: 'Please select your user type!'}],
                         })(
-                            <Radio.Group defaultValue="3">
+                            <Radio.Group>
                                 <Radio value={3}>Register</Radio>
                                 <Radio value={1}>Busker</Radio>
                                 <Radio value={2}>Admin</Radio>

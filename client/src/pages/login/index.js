@@ -10,7 +10,6 @@ import {
     LoginWrapper,
     FormWrapper
 } from "./style";
-import moment from "moment";
 
 
 class Login extends Component{
